@@ -1,0 +1,58 @@
+.overlay-base{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.482);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    &.shown{
+        display: flex;
+    }
+
+    .overlay{
+        padding: 1rem;
+        position: relative;
+        border-radius: 5px;
+        border: .16rem solid black;
+        background: #d4d4d4;
+        max-height: 90%;
+
+        h2{
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        p{
+            display: flex;
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            margin-top: .5rem;
+            &>*{
+                margin: 0 5px;
+            }
+        }
+
+        i{
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .header{
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 3rem;
+            height: 3rem;
+            cursor: pointer;
+            i{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

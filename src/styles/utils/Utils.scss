@@ -1,0 +1,77 @@
+@import 'GrowInput.scss';
+
+.lr-split{
+    display: flex;
+}
+
+.autocalc{
+    cursor: not-allowed;
+}
+
+.shadow{
+    *{
+        border-color: $disabledColor !important;
+        color: $disabledColor;
+    }
+}
+
+.negative{
+    color: #c80000 !important;
+}
+
+div.onefield{
+    display: flex;
+}
+
+.onefield{
+
+    input{
+        outline: none;
+        font-size: 1.2rem;
+        padding: .2rem .4rem;
+        width: 100%;
+        border: none;
+    }
+
+    .grow-input{
+        &>*{
+            font-size: 1.2rem;
+        }
+
+        span{
+            padding: .2rem .4rem;
+        }
+
+        input{
+            text-align: center;
+            padding: 0;
+        }
+    }
+
+    &>*{
+        border-top: $fieldBorder;
+        border-bottom: $fieldBorder;
+        overflow: hidden;
+        position: relative;
+
+        .seperator{
+            border-right: $fieldBorder;
+            height: 100%;
+            position: absolute;
+            top: 10%;
+            right: 0;
+            height: 80%;
+        }
+        
+        &:last-child{
+            border-right: $fieldBorder;
+            border-top-right-radius: $fieldBorderRadius;
+            border-bottom-right-radius: $fieldBorderRadius;
+        }
+        &:first-child{
+            border-left: $fieldBorder;
+            border-top-left-radius: $fieldBorderRadius;
+            border-bottom-left-radius: $fieldBorderRadius;
+        }
+    }
+}

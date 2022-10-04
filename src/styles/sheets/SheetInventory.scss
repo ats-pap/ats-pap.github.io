@@ -1,0 +1,159 @@
+
+.sheet.inventory{
+
+    &>div{
+        margin:10px;
+    }
+
+    .overview{
+        display: inline-block;
+        margin-top: 2rem;
+        margin-bottom: .8rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        &>div{
+            display: flex;
+            align-items: center;
+        }
+
+        i{
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: .2rem .5rem;
+        }
+
+        h2{
+            font-size: 1.8rem;
+            padding: .2rem 0;
+        }
+
+        h2,p{
+            display: inline-block;
+            margin-bottom: -3px;
+        }
+
+        p{
+            font-size: 1.4rem;
+            padding: 0 0.5rem;
+            text-align: center;
+        }
+
+    }
+
+    .items{
+        display: grid;
+        grid-template-areas: "a a";
+        grid-gap: .5rem 1rem;
+        grid-template-columns: minmax(50%, 50%);
+
+
+        .amt{
+            display: flex;
+        }
+
+        .name{
+            flex-grow: 1;
+        }
+    
+        .times{
+            display: flex;
+            align-items: center;
+
+            span{
+                font-family: "NewTelegraph";
+                font-size: 1.2rem;
+                margin: 0 .4rem;
+            }
+        }
+
+    }
+
+    .weapons{
+        &>*{
+            padding-bottom: .5rem;
+
+            &:last-child{
+                padding-bottom: 0;
+            }
+
+            &>*{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .category{
+                max-width: 12rem;
+                .grow-input{
+                    margin: 5px;
+                }
+            }
+
+            .name{
+                flex-grow: 1;
+            }
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                i{
+                    margin: .3rem;
+                    margin-right: .38rem;
+                    width: 1.8rem;
+                    height: 1.8rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .items, .weapons{
+        .actions{
+
+            div{
+                height: 100%;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                width: 5rem;
+                padding: .2rem;
+            }
+            
+            i{
+                cursor: pointer;
+                width: 1.5rem;
+                height: 1.5rem;
+                transition: .5s;
+            }
+        }
+
+
+        &>*{
+            display: flex;
+
+            &.shadow{
+                i {
+                    filter: opacity(.5);
+                    cursor: not-allowed;
+                }
+            }
+            &.locked{
+                i.ic-equip{
+                    filter: opacity(.5);
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+        .locked *{
+            border-color: #d0d0d0;
+        }
+    }
+
+    
+}

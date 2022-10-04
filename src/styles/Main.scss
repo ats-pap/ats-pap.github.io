@@ -1,0 +1,59 @@
+
+$fieldBorder: .16rem solid black;
+$fieldBorderRadius: .2rem;
+$disabledColor: gray;
+
+@font-face {
+    font-family: 'ChomskyRegular';
+    src: url('resources/fonts/Chomsky.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NewTelegraph';
+    src: url('resources/fonts/New Telegraph.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RobotoCondensedRegular';
+    src: url('resources/fonts/RobotoCondensed-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import 'sheets/Sheet.scss';
+@import 'utils/Utils.scss';
+@import 'Icons.scss';
+@import 'Overlay.scss';
+@import 'Toolbox.scss';
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "RobotoCondensedRegular";
+}
+
+i{
+    display: inline-block;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+input{
+    background: transparent;
+}
+
+body{
+    background: rgb(55, 55, 55);
+    padding: 2rem 2.5rem;
+}
+
+body,html{
+    width: 100%;
+    height: 100%;
+}
