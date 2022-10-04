@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>ATS Pen & Paper Game</title>
+        <link rel="icon" type="image/x-icon" href="resources/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <script src="webapp.js"></script>
+    </head>
+    <body>
+
+        <div class="overlay-base">
+            <div class="overlay sources">
+                <div class="header">
+                    <i class="ic-delete pop-close"></i>
+                </div>
+                <h2>Quellen</h2>                    
+                <p><i class="ic-locked"></i> und <i class="ic-unlocked"></i>(Editierte Version des vorherigen) von <a target="_blank" href="https://icons8.com/icon/82747/lock">Icons8</a>.</p>
+                <p><i class="ic-armor"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/armor">Nikita Golubev - Flaticon</a>.</p>
+                <p><i class="ic-blood"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/blood">Pixel perfect - Flaticon</a>.</p>
+                <p><i class="ic-brain"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/brain">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-delete"></i>von uns.</p>
+                <p><i class="ic-equip"></i>wurde editiert. Das Original ist von <a target="_blank" href="https://www.flaticon.com/free-icons/stop">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-heart"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/heart">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-policestick"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/baton">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-sword"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/sword">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-pistole"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/gun">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-sniper"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/sniper">photo3idea_studio - Flaticon</a>.</p>
+                <p><i class="ic-weapons"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/bomb">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-items"></i>von <a target="_blank" href="https://www.flaticon.com/free-icons/coin">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-save"></i> von <a target="_blank" href="https://www.flaticon.com/free-icons/save-file">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-load"></i> von <a target="_blank" href="https://www.flaticon.com/free-icons/folder">gariebaldy - Flaticon</a>.</p>
+                <p><i class="ic-license"></i> von <a target="_blank" href="https://www.flaticon.com/free-icons/revolver">Icongeek26 - Flaticon</a>.</p>
+                <p><i class="ic-shoot"></i> von <a target="_blank" href="https://www.flaticon.com/de/kostenlose-icons/code">Freepik - Flaticon</a>.</p>
+                <p><i class="ic-ats"></i>ist eine Editation des<a target="_blank" href="https://artandtech.space/">ARTandTECH.space</a>-Logos.</p>
+            </div>
+        </div>
+
+        <div class="toolbox">
+            <input type="file" class="uploadHelper">
+            <div class="upload">
+                <i class="ic-load"></i>
+                <span>öffnen</span>
+            </div>
+            <div class="download">
+                <i class="ic-save"></i>
+                <span>Speichern</span>
+            </div>
+            <div class="sources">
+                <i class="ic-license"></i>
+                <span>Lizenzen</span>
+            </div>
+            <a href="https://artandtech.space/" target="_blank" class="ats">
+                <i class="ic-ats"></i>
+                <span>Über uns</span>
+            </a>
+        </div>
+
+        <div class="sheet character">
+            <h1>Charakterbogen</h1>
+            <div class="lr-split">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="field">
+                                    <label for="character-name">Name</label>
+                                    <input id="character-name" type="text" placeholder="Franz..." name="name"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="field">
+                                    <label for="character-gender">Geschlecht</label>
+                                    <input id="character-gender" type="text" placeholder="Apache..." name="gender"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="field">
+                                    <label for="character-age">Alter</label>
+                                    <input id="character-age" type="text" placeholder="18+..." name="age"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="field">
+                                    <label for="character-body">Körperbau</label>
+                                    <input id="character-body" type="text" placeholder="So nen Körper Bruder..." name="stature"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="field">
+                                    <label for="character-religion">Religion</label>
+                                    <input id="character-religion" type="text" placeholder="Pastafari..." name="religion"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="field">
+                                    <label for="character-job">Beruf</label>
+                                    <input id="character-job" type="text" placeholder="Fachfrau für Selbstvermarktung..." name="job"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="field">
+                                    <label for="character-family">Familienstand</label>
+                                    <input id="character-family" type="text" placeholder="Nein..." name="family"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="portrait field-outline">
+                    <span>Portrait</span>
+                    <div></div>
+                    <input type="file">
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet skills">
+            <h1>Skills</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <table id="skillsActHead" class="headfield field-outline">
+                                <tr>
+                                    <td>Handeln</td>
+                                    <td class="i-field"><i class="ic-brain"></i></td>
+                                </tr>
+                                <tr class="values">
+                                    <td>
+                                        <span class="autocalc">31</span>
+                                    </td>
+                                    <td class="i-value">
+                                        <input placeholder="0" type="number" min="0" max="3" value="3">
+                                        <span>/</span>
+                                        <span class="autocalc">3</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </th>
+                        <th>
+                            <table id="skillsScienceHead" class="headfield field-outline">
+                                <tr>
+                                    <td>Wissen</td>
+                                    <td class="i-field"><i class="ic-brain"></i></td>
+                                </tr>
+                                <tr class="values">
+                                    <td>
+                                        <span class="autocalc">31</span>
+                                    </td>
+                                    <td class="i-value">
+                                        <input placeholder="0" type="number" min="0" max="3" value="3">
+                                        <span>/</span>
+                                        <span class="autocalc">3</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </th>
+                        <th>
+                            <table id="skillsSocialHead" class="headfield field-outline">
+                                <tr>
+                                    <td>Soziales</td>
+                                    <td class="i-field"><i class="ic-brain"></i></td>
+                                </tr>
+                                <tr class="values">
+                                    <td>
+                                        <span class="autocalc">31</span>
+                                    </td>
+                                    <td class="i-value">
+                                        <input placeholder="0" type="number" min="0" max="3" value="3">
+                                        <span>/</span>
+                                        <span class="autocalc">3</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Wert</th>
+                                        <th>+/-</th>
+                                        <th>=</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="skillsAct">
+                                    <!--
+                                        Below is an example of an input for this list. Also the three other tables will contain simelar items
+
+                                        <tr class="onefield">
+                                            <td class="name">
+                                                <input type="text">
+                                                <div class="seperator"></div>
+                                            </td>
+                                            <td class="value">
+                                                <GrowInput maxlength="3" type="number" value="0" min="0" max="999"></GrowInput>
+                                                <div class="seperator"></div>
+                                            </td>
+                                            <td class="bon-mal" >
+                                                <GrowInput maxlength="4" type="number" value="0" min="-999" max="999"></GrowInput>
+                                                <div class="seperator"></div>
+                                            </td>
+                                            <td class="result">
+                                                <span>5</span>
+                                            </td>
+                                        </tr>
+                                    -->
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Wert</th>
+                                        <th>+/-</th>
+                                        <th>=</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="skillsScience">
+                                    <!--Here are also items-->
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Wert</th>
+                                        <th>+/-</th>
+                                        <th>=</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="skillsSocial">
+                                    <!--Here are also items-->
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p id="skills-points">Von<input type="number" min="0" max="999" placeholder="0" value="400">zu vergebenden Punkten sind noch<span class="autocalc">200</span>übrig.</p>
+        </div>
+
+        <div class="sheet active">
+            <h1>Aktivkarte</h1>
+            
+            <div class="lr-split">
+                <div class="left">
+                    <div class="selected-item">
+                        <p>Ausgewähltes Item</p>
+                        <div class="onefield">
+                            <div>
+                                <GrowInput placeholder="Leer" id="act-selected-item" type="text"></GrowInput>
+                                <div class="seperator"></div>
+                            </div>
+                            <i id="act-del-selected-item" class="ic-delete"></i>
+                        </div>
+                    </div>
+
+                    <div class="ammunition">
+                        <p>Munition</p>
+                        <div class="onefield">
+                            <div>
+                                <GrowInput placeholder="0" value="0" min="0" max="99999" id="act-ammunition" type="number"></GrowInput>
+                                <span>Schuss</span>
+                                <div class="seperator"></div>
+                            </div>
+                            <i id="act-shoot" class="ic-shoot"></i>
+                        </div>
+                    </div>
+
+                    <div class="skills">
+                        <div class="health">
+                            <i class="ic-heart"></i>
+                            <GrowInput placeholder="0" class="value" maxlength="3" type="number" min="1" max="999" value="100"></GrowInput>
+                            <span>Basis</span>
+                        </div>
+                        <span class="char">+</span>
+                        <div class="armor">
+                            <i class="ic-armor"></i>
+                            <GrowInput placeholder="0" class="value" maxlength="3" type="number" min="0" max="999" value="0"></GrowInput>
+                            <span>Rüstung</span>
+                        </div>
+                        <span class="char">-</span>
+                        <div class="damage">
+                            <i class="ic-blood"></i>
+                            <GrowInput placeholder="0" class="value" maxlength="3" type="number" min="0" max="999" value="0"></GrowInput>
+                            <span>Schaden</span>
+                        </div>
+                        <span class="char">=</span>
+                    </div>
+
+                    <p class="health-left"><span>170</span>Hp</p>
+        
+
+                    <h3>Malusliste</h3>
+                    <div class="maluslist" id="act-malus-list">
+                        <!--
+                            The comment below shows an example of an input-element
+
+                            <div class="onefield">
+                                <div class="name" >
+                                    <GrowInput></GrowInput>
+                                    <div class="seperator"></div>
+                                </div>
+                                <div class="effect">
+                                    <input type="text">
+                                    <div class="seperator"></div>
+                                </div>
+                                <div class="delete">
+                                    <i class="ic-delete"></i>
+                                </div>
+                            </div>
+
+                        -->
+                    </div>
+                </div>
+                <div class="right">
+                    <h3>Notizen</h3>
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="sheet inventory">
+            <h1>Inventar</h1>
+            <div>
+
+                <div class="field-outline overview">
+                    <div>
+                        <i class="ic-items"></i>
+                        <h2>Items</h2>
+                    </div>
+                    <p id="inv-items-display"><span class="autocalc">34</span>/<span class="autocalc">37</span></p>
+                </div>
+                <div class="items" id="inv-items">
+                    <!--
+    
+                        The comment below shows an example of an input-element
+                        
+                        <div class="onefield">
+                            <div class="amt">
+                                <GrowInput maxlength="5" type="number" value="1" min="1" max="99999"></GrowInput>
+                            </div>
+                            <div class="times">
+                                <span>x</span>
+                            </div>
+                            <div class="name" >
+                                <input type="text">
+                                <div class="seperator"></div>
+                            </div>
+                            <div class="actions">
+                                <div>
+                                    <i class="ic-unlocked"></i>
+                                    <i class="ic-equip"></i>
+                                    <i class="ic-delete"></i>
+                                </div>
+                            </div>
+                        </div>
+                
+                    -->
+                </div>
+                <div class="field-outline overview">
+                    <div>
+                        <i class="ic-weapons"></i>
+                        <h2>Waffen</h2>
+                    </div>
+                    <p id="inv-weapons-display"><span class="autocalc">34</span>/<span class="autocalc">37</span></p>
+                </div>
+                <div class="weapons" id="inv-weapons">
+    
+                    <!--
+                        The comment below shows an example of an input-element
+    
+                        <div class="onefield">
+                            <div class="icon">
+                                <i class="ic-pistole"></i>
+                                <div class="seperator"></div>
+                            </div>
+                            <div class="type" >
+                                <GrowInput></GrowInput>
+                                <div class="seperator"></div>
+                            </div>
+                            <div class="name" >
+                                <input type="text">
+                                <div class="seperator"></div>
+                            </div>
+                            <div class="damage">
+                                <GrowInput type="text" maxlength="20" value="2W6"></GrowInput>
+                                <div class="seperator"></div>
+                            </div>
+                            <div class="actions">
+                                <div>
+                                    <i class="ic-unlocked"></i>
+                                    <i class="ic-equip"></i>
+                                    <i class="ic-delete"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    -->
+                </div>
+            </div>
+        </div>
+        
+    </body>
+
+</html>
