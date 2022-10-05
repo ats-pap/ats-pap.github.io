@@ -26,6 +26,9 @@ function onStart(){
     SheetSkills.init();
     SheetActive.init();
     SheetCharacter.init();
+
+    // Removes the init-css-state
+    document.body.classList.remove("initState");
 }
 
 window.onload=onStart;

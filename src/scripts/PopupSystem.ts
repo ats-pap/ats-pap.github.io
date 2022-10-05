@@ -1,8 +1,8 @@
 import { getUiBindings } from "./UiBindings"
-import { F, FA } from "./utils/Utils"
+import { FA } from "./utils/Utils"
 
-// Event: When the popup-close button is pressed
-function onClose(){
+// Closes the popup
+function close(){
     getUiBindings().popup.overlay.classList.remove("shown");
 }
 
@@ -14,11 +14,14 @@ function showSources(){
 // Initalizes the popup-system
 function init(){
     // Binds the close events
-    Array.from(FA(".pop-close", getUiBindings().popup.overlay)).forEach(btn=>btn.addEventListener("click", onClose))
+    Array.from(FA(".pop-close", getUiBindings().popup.overlay)).forEach(btn=>btn.addEventListener("click", close));
+
+    Popup.close();
 }
 
 export const Popup = {
     showSources,
 
-    init
+    init,
+    close
 }

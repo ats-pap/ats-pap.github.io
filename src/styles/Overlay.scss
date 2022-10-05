@@ -1,3 +1,7 @@
+body.initState .overlay-base{
+    opacity: 0%;
+}
+
 .overlay-base{
     position: fixed;
     top: 0;
@@ -21,6 +25,7 @@
         border: .16rem solid black;
         background: #d4d4d4;
         max-height: 90%;
+        overflow: auto;
 
         h2{
             margin-bottom: 2rem;
