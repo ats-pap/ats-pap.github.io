@@ -4,7 +4,7 @@ import { Construct, GrowingItemSupplier } from "../../utils/GrowingItems";
 import { GrowInputs } from "../../utils/GrowInput";
 import { create as C } from "../../utils/HTMLBuilder";
 import { StrongInputValidator } from "../../utils/StrongInputValidator";
-import { getShortName, getXParent, toggleEventListener } from "../../utils/Utils";
+import { getShortName, getXParent, toggleEventListener, changeToNextIcon } from "../../utils/Utils";
 import { SheetActive } from "../SheetActive";
 import { SheetInventory } from "../SheetInventory";
 
@@ -19,7 +19,7 @@ type Container = {
 }
 
 // Mappings from weapon-types to icons
-var WEAPON_TYPE_ICON = {
+var WEAPON_TYPE_ICON : {[x in WeaponType]: string} = {
     [WeaponType.MELEE_DULL]: "ic-policestick",
     [WeaponType.MELEE_SHARP]: "ic-sword",
     [WeaponType.ONE_HAND]: "ic-pistole",
@@ -116,7 +116,6 @@ function onConvertElement(constr: Construct<Container>){
     constr.with!.iLock.addEventListener("click", onLockClicked);
     constr.with!.iEquip.addEventListener("click", onEquipClicked);
     constr.with!.iDelete.addEventListener("click", onDeleteClicked);
-    constr.with!.type.addEventListener("click", onTypeIconClicked);
 
     // Recalculates
     SheetInventory.calculateWeapons();
@@ -156,10 +155,10 @@ function createInventorySlot(cfg?: WeaponSchema) : Construct<Container>{
     var iWeapons = C("i", {
         cls: WEAPON_TYPE_ICON[BASE_WP],
         evts: {
-            "click": isShadow ? undefined : onTypeIconClicked
+            "click": (evt: Event)=> changeToNextIcon(WeaponType, WEAPON_TYPE_ICON, evt.target! as HTMLElement)
         }
     });
-    iWeapons.dataset.weapon = BASE_WP;
+    iWeapons.dataset.type = BASE_WP;
 
     // Category-selector
     var category = GrowInputs.createGrowInput({

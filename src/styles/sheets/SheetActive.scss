@@ -145,9 +145,13 @@
                 min-width: 5rem;
             }
 
-            .delete{
+            .delete, .type{
                 display: flex;
                 align-items: center;
+            }
+
+            .type i{
+                cursor: pointer;
             }
 
             i{

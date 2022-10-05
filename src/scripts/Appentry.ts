@@ -28,8 +28,4 @@ function onStart(){
     SheetCharacter.init();
 }
 
-// TODO
-console.log(Popup.showSources);
-
-
 window.onload=onStart;

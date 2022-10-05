@@ -141,6 +141,10 @@
                     filter: opacity(.5);
                     cursor: not-allowed;
                 }
+
+                .icon i{
+                    cursor: pointer;
+                }
             }
             &.locked{
                 i.ic-equip{

@@ -86,3 +86,29 @@ export function dataURLtoFile(dataurl: string, filename: string) {
     
     return new File([u8arr], filename, {type:mime});
 }
+
+/**
+ * Takes in a @param base of icons, a @param iconMapper to their icon-class and an html-element @param icon
+ * to update it to their next value
+ */
+export function changeToNextIcon<T extends string,K extends string>(base: {[x in K]: T}, iconMapper: {[t in T]: string}, icon: HTMLElement){
+     // Gets the current icon
+     var iconType = icon.dataset.type as T;
+ 
+    // Gets the values and keys
+    var values = Object.values(base)
+    var keys = Object.keys(base);
+
+     // Gets the next icon-index
+     var next = values.indexOf(iconType)+1;
+ 
+     if(next >= keys.length)
+         next=0;
+ 
+     // Gets the next icon
+     var nxtIcon = values[next] as T;
+ 
+     // Updates the icons data value and class
+     icon.dataset.type = nxtIcon;
+     icon.className = iconMapper[nxtIcon];
+}

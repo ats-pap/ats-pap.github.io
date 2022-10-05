@@ -8,6 +8,12 @@ export enum WeaponType {
     TWO_HAND = "two_hand",
 }
 
+// Malus/Bonus type
+export enum MalusBonusType {
+    MALUS = "malus",
+    BONUS = "bonus"
+}
+
 // Schema for a skill-table
 const ACT_TABLE_SCHEMA = {
     type: "object",
@@ -98,7 +104,8 @@ export const SCHEMA = {
                         ],
                         properties: {
                             name: { type: "string" },
-                            effect: { type: "string" }
+                            effect: { type: "string" },
+                            type: { type: "string", enum: Object.values(MalusBonusType) }
                         }
                     }
                 },
@@ -194,7 +201,7 @@ export const SCHEMA = {
 
                         properties: {
                             name: { type: "string" },
-                            type: { type: "string", enum: ["melee_dull", "melee_sharp", "one_hand", "two_hand"] },
+                            type: { type: "string", enum: Object.values(WeaponType)},
                             damage: { type: "string" },
                             category: { type: "string" },
                             locked: { type: "boolean" }
@@ -230,7 +237,8 @@ export type CharacterSchema = {
 
 export type MalusSchema = {
     name: string,
-    effect: string
+    effect: string,
+    type?: MalusBonusType
 }
 
 export type ActiveSchema = {

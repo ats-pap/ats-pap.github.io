@@ -1,9 +1,9 @@
-import { MalusSchema } from "../../serialisation/Schemas";
+import { MalusBonusType, MalusSchema } from "../../serialisation/Schemas";
 import { getUiBindings, UiBindings } from "../../UiBindings";
 import { Construct, GrowingItemSupplier } from "../../utils/GrowingItems";
 import { GrowInputs } from "../../utils/GrowInput";
 import { create as C } from "../../utils/HTMLBuilder";
-import { getShortName, getXParent } from "../../utils/Utils";
+import { changeToNextIcon, getShortName, getXParent } from "../../utils/Utils";
 
 // Container for other elements that one grow-item holds
 type Container = {
@@ -13,6 +13,11 @@ type Container = {
 // Reference to the grow-items handler
 var growItemHandler: GrowingItemSupplier<Container, MalusSchema>;
 
+// Mappings from weapon-types to icons
+var TYPE_ICON : {[x in MalusBonusType]: string} = {
+    [MalusBonusType.BONUS]: "ic-bonus",
+    [MalusBonusType.MALUS]: "ic-malus"
+}
 
 // Event: When the delete-icon get's clicked
 const onDeleteClicked = (evt: Event)=>{
@@ -46,6 +51,9 @@ function createInventorySlot(cfg?: MalusSchema) : Construct<Container>{
     // If the element is a shadow-object
     var isShadow = cfg === undefined;
 
+    // Gets the type
+    var type = cfg?.type ?? MalusBonusType.MALUS; 
+
     // Creates the input
     var inp =  GrowInputs.createGrowInput({
         placeholder: "Name",
@@ -60,19 +68,32 @@ function createInventorySlot(cfg?: MalusSchema) : Construct<Container>{
         }
     });
 
+    // Creates the type-selector
+    var iType = C("i", {
+        cls: TYPE_ICON[type],
+        evts: {
+            "click": (evt: Event)=> changeToNextIcon(MalusBonusType, TYPE_ICON, evt.target! as HTMLElement)
+        }
+    });
+    iType.dataset.type = type;
+
     return {
         input: inp.input,
         with: {
             iDelete
         },
         dom: C("div", {cls: "onefield"+(isShadow ? " shadow" : ""), chld: [
+            C("div", {cls: "type", chld: [
+                iType,
+                C("div", {cls: "seperator"})
+            ]}),
             C("div", {cls: "name", chld: [
                 inp.dom,
                 C("div", {cls: "seperator"})
             ]}),
             C("div", {cls: "effect", chld: [
                 C("input", { attr: {
-                    placeholder: "Effekt des Malus",
+                    placeholder: "Effekt des Malus/Bonus",
                     value: isShadow ? "" : cfg!.effect
                 }}),
                 C("div", {cls: "seperator"})

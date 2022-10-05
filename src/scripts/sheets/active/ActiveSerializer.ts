@@ -1,4 +1,4 @@
-import { ActiveSchema } from "../../serialisation/Schemas";
+import { ActiveSchema, MalusBonusType } from "../../serialisation/Schemas";
 import { getUiBindings } from "../../UiBindings";
 import { F, getNumberFromInput, SHADOW_FILTER } from "../../utils/Utils";
 import { SheetActive } from "../SheetActive";
@@ -19,13 +19,15 @@ function serializeHealth(){
 function serializeMalusList(){
     // Serializes a single malus-row
     function serializeRow(row: HTMLDivElement){
-        // Gets name and effect
+        // Gets name, effect and type
         var name = F<HTMLInputElement>("input",F(".name",row)).value;
         var effect = F<HTMLInputElement>("input",F(".effect",row)).value;
+        var type = F<HTMLElement>("i",F(".type",row)).dataset.type as MalusBonusType;
 
         return {
             name,
-            effect
+            effect,
+            type
         }
     }
     

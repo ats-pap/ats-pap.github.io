@@ -33,7 +33,7 @@ function serializeWeapons(){
         var name = F<HTMLInputElement>("input",F(".name",row)).value;
         var category = F<HTMLInputElement>("input",F(".category",row)).value;
         var damage = F<HTMLInputElement>("input",F(".damage",row)).value;
-        var type = F("i", F(".icon", row)).dataset.weapon ?? "one_hand";
+        var type = F("i", F(".icon", row)).dataset.type ?? "one_hand";
 
         return {
             name,
