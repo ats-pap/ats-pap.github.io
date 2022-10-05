@@ -1,27 +1,23 @@
 i{
-    &.ic-delete{ background: url("resources/Delete.png"); }
-    &.ic-items{ background: url("resources/Items.png"); }
-    &.ic-weapons{ background: url("resources/Weapons.png"); }
-    &.ic-unlocked{ background: url("resources/Activate.png"); }
-    &.ic-locked{ background: url("resources/Deactivate.png"); }
-    &.ic-equip{ background: url("resources/HandIcon.png"); }
-
-    &.ic-pistole{ background: url("resources/OnehandedWeapon.png"); }
-    &.ic-sniper{ background: url("resources/TwohandedWeapon.png"); }
-    &.ic-policestick{ background: url("resources/MeleeDull.png"); }
-    &.ic-sword{ background: url("resources/MeleeSharp.png"); }
-    
-    &.ic-brain{ background: url("resources/BrainIcon.png"); }
-    &.ic-delete{ background: url("resources/Delete.png"); }
-    &.ic-armor{ background: url("resources/Armor.png"); }
-    &.ic-blood{ background: url("resources/Blood.png"); }
-    &.ic-heart{ background: url("resources/Heart.png"); }
-
-    &.ic-save{ background: url("resources/Save.png"); }
-    &.ic-load{ background: url("resources/Load.png"); }
-    &.ic-license{ background: url("resources/License.png"); }
-    &.ic-ats{ background: url("resources/ATS.png"); }
-    &.ic-shoot{ background: url("resources/Shoot.png"); }
-    &.ic-bonus{ background: url("resources/Bonus.png"); }
-    &.ic-malus{ background: url("resources/Malus.png"); }
+    &.ic-unlocked{ background: url("resources/icons/Activate.png"); }
+    &.ic-armor{ background: url("resources/icons/Armor.png"); }
+    &.ic-ats{ background: url("resources/icons/ATS.png"); }
+    &.ic-blood{ background: url("resources/icons/Blood.png"); }
+    &.ic-brain{ background: url("resources/icons/Brain.png"); }
+    &.ic-bonus{ background: url("resources/icons/Bonus.png"); }
+    &.ic-locked{ background: url("resources/icons/Deactivate.png"); }
+    &.ic-delete{ background: url("resources/icons/Delete.png"); }
+    &.ic-equip{ background: url("resources/icons/Hand.png"); }
+    &.ic-heart{ background: url("resources/icons/Heart.png"); }
+    &.ic-items{ background: url("resources/icons/Items.png"); }
+    &.ic-license{ background: url("resources/icons/License.png"); }
+    &.ic-load{ background: url("resources/icons/Load.png"); }
+    &.ic-malus{ background: url("resources/icons/Malus.png"); }
+    &.ic-policestick{ background: url("resources/icons/MeleeDull.png"); }
+    &.ic-sword{ background: url("resources/icons/MeleeSharp.png"); }
+    &.ic-pistole{ background: url("resources/icons/OnehandedWeapon.png"); }
+    &.ic-save{ background: url("resources/icons/Save.png"); }
+    &.ic-shoot{ background: url("resources/icons/Shoot.png"); }
+    &.ic-sniper{ background: url("resources/icons/TwohandedWeapon.png"); }
+    &.ic-weapons{ background: url("resources/icons/Weapons.png"); }
 }
