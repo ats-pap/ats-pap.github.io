@@ -1,4 +1,4 @@
-import { EffectType, MalusSchema } from "../../serialisation/Schemas";
+import { EffectType, EffectSchema } from "../../serialisation/Schemas";
 import { getUiBindings, UiBindings } from "../../UiBindings";
 import { Construct, GrowingItemSupplier } from "../../utils/GrowingItems";
 import { GrowInputs } from "../../utils/GrowInput";
@@ -11,7 +11,7 @@ type Container = {
 }
 
 // Reference to the grow-items handler
-var growItemHandler: GrowingItemSupplier<Container, MalusSchema>;
+var growItemHandler: GrowingItemSupplier<Container, EffectSchema>;
 
 // Mappings from effect-types to icons
 var EFFECT_ICON : {[x in EffectType]: string} = {
@@ -65,11 +65,12 @@ function onTypeChanged(value: EffectType, base: HTMLElement){
     text.textContent = EFFECT_NAMES[value];
 }
 
-function createInventorySlot(cfg?: MalusSchema) : Construct<Container>{
+function createInventorySlot(cfg?: EffectSchema) : Construct<Container>{
     // If the element is a shadow-object
     var isShadow = cfg === undefined;
 
     // Gets the type
+    // Lagacy: Malus must be the default type if no type is given (From formats that didn't have effect-lists)
     var type = cfg?.type ?? EffectType.MALUS; 
 
     // Creates the input
@@ -121,13 +122,13 @@ function createInventorySlot(cfg?: MalusSchema) : Construct<Container>{
     }
 }
 
-export function getMalusGrowHandler(){
+export function getEffectlistGrowHandler(){
     return growItemHandler;
 }
 
-export function initFormMalus(){
+export function initFormEffectlist(){
     // Creates the grow-items handler for the items
-    growItemHandler = new GrowingItemSupplier(getUiBindings().active.malusList, createInventorySlot, {
+    growItemHandler = new GrowingItemSupplier(getUiBindings().active.effectList, createInventorySlot, {
         onConvertShadow: onConvertElement
     });
 }

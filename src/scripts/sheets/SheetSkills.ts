@@ -47,7 +47,7 @@ function onConvertElement(catKey: SkillTableKey, constr: Construct<Container>){
     handler();
 }
 
-// Event: When the malus/addition points element get's updated
+// Event: When the malus/bonus points element get's updated
 function onAddPointsUpdate(evt: Event){
     // Gets the points
     var pts = getNumberFromInput(evt.target as HTMLInputElement,0);

@@ -2,7 +2,7 @@ import { ActiveSchema, EffectType } from "../../serialisation/Schemas";
 import { getUiBindings } from "../../UiBindings";
 import { F, getNumberFromInput, SHADOW_FILTER } from "../../utils/Utils";
 import { SheetActive } from "../SheetActive";
-import { getMalusGrowHandler } from "./FormMalusList";
+import { getEffectlistGrowHandler } from "./FormEffectList";
 
 // Serializes the health
 function serializeHealth(){
@@ -15,9 +15,9 @@ function serializeHealth(){
     }
 }
 
-// Serializes the malus-list
-function serializeMalusList(){
-    // Serializes a single malus-row
+// Serializes the effectlist
+function serializeEffectList(){
+    // Serializes a single effect-row
     function serializeRow(row: HTMLDivElement){
         // Gets name, effect and type
         var name = F<HTMLInputElement>("input",F(".name",row)).value;
@@ -31,8 +31,8 @@ function serializeMalusList(){
         }
     }
     
-    // Gets all rows (Maluses) and maps them to their required form
-    return Array.from(getUiBindings().active.malusList.children)
+    // Gets all rows (Effects) and maps them to their required form
+    return Array.from(getUiBindings().active.effectList.children)
                 .filter(SHADOW_FILTER as any)
                 .filter(row=>row.tagName === "DIV")
                 .map(serializeRow as any);
@@ -62,11 +62,12 @@ export function deserializeActive(raw: ActiveSchema){
     // Updates notes
     notes.value = raw.notes;
 
-    // Clears and updates malus-list
-    var malusHandler = getMalusGrowHandler();
-    malusHandler.clear();
-    for(var malus of raw.maluslist)
-        malusHandler.addElement(malus);
+    // Clears and updates effects-list
+    var effectHandler = getEffectlistGrowHandler();
+    effectHandler.clear();
+    // Lagacy: Should be effect-list
+    for(var effect of raw.maluslist)
+        effectHandler.addElement(effect);
 }
 
 // Serializes the active-sheet
@@ -76,7 +77,8 @@ export function serializeActive(){
     var {selectedItem, notes, ammunition } = getUiBindings().active;
 
     return {
-        maluslist: serializeMalusList(),
+        // Lagacy: Should be effect-list
+        maluslist: serializeEffectList(),
         health: serializeHealth(),
         item: selectedItem.value,
         notes: notes.value,

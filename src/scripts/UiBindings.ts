@@ -67,7 +67,7 @@ export type InventoryBindings = {
     weaponsList: InventoryList
 }
 export type ActiveBindings = {
-    malusList: HTMLDivElement,
+    effectList: HTMLDivElement,
     iDeleteSelectItem: HTMLElement,
     iShoot: HTMLElement,
     selectedItem: HTMLInputElement,
@@ -216,7 +216,7 @@ export function initUiBindings(){
         },
 
         active: {
-            malusList: F("#act-malus-list"),
+            effectList: F("#act-effect-list"),
             selectedItem: F("#act-selected-item"),
             iDeleteSelectItem: F("#act-del-selected-item"),
             ammunition: F("#act-ammunition"),

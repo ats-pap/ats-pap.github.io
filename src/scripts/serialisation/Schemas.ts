@@ -8,7 +8,7 @@ export enum WeaponType {
     TWO_HAND = "two_hand",
 }
 
-// Malus/Bonus type
+// Effect types (Bonus, malus and properties)
 export enum EffectType {
     MALUS = "malus",
     BONUS = "bonus",
@@ -87,6 +87,7 @@ export const SCHEMA = {
         active: {
             type: "object",
             required: [
+                // Lagacy: The name malus-list should be effect-list
                 "maluslist",
                 "health",
                 "item",
@@ -95,6 +96,7 @@ export const SCHEMA = {
             ],
 
             properties: {
+                // Lagacy: The name malus-list should be effect-list
                 maluslist: {
                     type: "array",
                     items: {
@@ -236,7 +238,7 @@ export type CharacterSchema = {
     portrait?: string
 }
 
-export type MalusSchema = {
+export type EffectSchema = {
     name: string,
     effect: string,
     type?: EffectType
@@ -251,7 +253,8 @@ export type ActiveSchema = {
         damage: number,
         armor: number
     },
-    maluslist: MalusSchema[]
+    // Lagacy: The name maluslist should be effect-list
+    maluslist: EffectSchema[]
 }
 
 export type SkillTableCollectionSchema = {

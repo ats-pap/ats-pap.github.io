@@ -2,7 +2,7 @@ import { getUiBindings } from "../UiBindings";
 import { getNumberFromInput } from "../utils/Utils";
 import { recalcHealth } from "./active/ActiveCalculator";
 import { deserializeActive, serializeActive } from "./active/ActiveSerializer";
-import { initFormMalus } from "./active/FormMalusList";
+import { initFormEffectlist } from "./active/FormEffectList";
 
 // Event: When the delete selected-item icon is clicked
 const onSelectItemDeleteClicked=()=>{
@@ -49,8 +49,8 @@ function bindCalculators(){
 // Used to initalize the sheet
 function init(){
 
-    // Inits the malus-form
-    initFormMalus();
+    // Inits the effectlist-form
+    initFormEffectlist();
 
     // Binds the delete-selected-item evemt
     getUiBindings().active.iDeleteSelectItem.addEventListener("click", onSelectItemDeleteClicked);
