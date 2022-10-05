@@ -91,24 +91,24 @@ export function dataURLtoFile(dataurl: string, filename: string) {
  * Takes in a @param base of icons, a @param iconMapper to their icon-class and an html-element @param icon
  * to update it to their next value
  */
-export function changeToNextIcon<T extends string,K extends string>(base: {[x in K]: T}, iconMapper: {[t in T]: string}, icon: HTMLElement){
-     // Gets the current icon
-     var iconType = icon.dataset.type as T;
+export function changeToNext<T extends string,K extends string>(base: {[x in K]: T}, callback: (next: T, element: HTMLElement)=>void, element: HTMLElement){
+     // Gets the current element-value
+     var value = element.dataset.type as T;
  
     // Gets the values and keys
     var values = Object.values(base)
     var keys = Object.keys(base);
 
-     // Gets the next icon-index
-     var next = values.indexOf(iconType)+1;
+     // Gets the next value-index
+     var nextIdx = values.indexOf(value)+1;
  
-     if(next >= keys.length)
-         next=0;
+     if(nextIdx >= keys.length)
+         nextIdx=0;
  
-     // Gets the next icon
-     var nxtIcon = values[next] as T;
+     // Gets the next value
+     var nextValue = values[nextIdx] as T;
  
-     // Updates the icons data value and class
-     icon.dataset.type = nxtIcon;
-     icon.className = iconMapper[nxtIcon];
+     // Updates the elements data value and executes the callback
+     element.dataset.type = nextValue;
+     callback(nextValue, element);
 }

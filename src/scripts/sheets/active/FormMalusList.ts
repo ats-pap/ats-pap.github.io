@@ -1,9 +1,9 @@
-import { MalusBonusType, MalusSchema } from "../../serialisation/Schemas";
+import { EffectType, MalusSchema } from "../../serialisation/Schemas";
 import { getUiBindings, UiBindings } from "../../UiBindings";
 import { Construct, GrowingItemSupplier } from "../../utils/GrowingItems";
 import { GrowInputs } from "../../utils/GrowInput";
 import { create as C } from "../../utils/HTMLBuilder";
-import { changeToNextIcon, getShortName, getXParent } from "../../utils/Utils";
+import { changeToNext, F, getShortName, getXParent } from "../../utils/Utils";
 
 // Container for other elements that one grow-item holds
 type Container = {
@@ -13,10 +13,18 @@ type Container = {
 // Reference to the grow-items handler
 var growItemHandler: GrowingItemSupplier<Container, MalusSchema>;
 
-// Mappings from weapon-types to icons
-var TYPE_ICON : {[x in MalusBonusType]: string} = {
-    [MalusBonusType.BONUS]: "ic-bonus",
-    [MalusBonusType.MALUS]: "ic-malus"
+// Mappings from effect-types to icons
+var EFFECT_ICON : {[x in EffectType]: string} = {
+    [EffectType.BONUS]: "ic-bonus",
+    [EffectType.MALUS]: "ic-malus",
+    [EffectType.PROPERTY]: "ic-property"
+}
+
+// Mappings from effect-types to names
+var EFFECT_NAMES: {[x in EffectType]: string} = {
+    [EffectType.BONUS]: "Bonus",
+    [EffectType.MALUS]: "Malus",
+    [EffectType.PROPERTY]: "Eigenschaft"
 }
 
 // Event: When the delete-icon get's clicked
@@ -25,10 +33,9 @@ const onDeleteClicked = (evt: Event)=>{
     var constr: Construct<Container> = growItemHandler.getStructByInputOrDom(
         getXParent(evt.target! as HTMLElement, 2)
     );
-
     
     // Askes the user if the item shall be deleted
-    var shouldDelete = confirm(`Möchtest du den Malus '${getShortName(constr.input.value, 20)}' wirklich löschen?`);
+    var shouldDelete = confirm(`Möchtest du den Effekt '${getShortName(constr.input.value, 20)}' wirklich löschen?`);
     
     if(!shouldDelete)
         return;
@@ -47,12 +54,23 @@ function onConvertElement(constr: Construct<Container>){
     constr.with!.iDelete.addEventListener("click", onDeleteClicked);
 }
 
+// Event: When the type changes 
+function onTypeChanged(value: EffectType, base: HTMLElement){
+    // Gets the icon-element and text-element
+    var icon = F("i", base);
+    var text = F("span", base);
+
+    // Updates the elements
+    icon.className = EFFECT_ICON[value];
+    text.textContent = EFFECT_NAMES[value];
+}
+
 function createInventorySlot(cfg?: MalusSchema) : Construct<Container>{
     // If the element is a shadow-object
     var isShadow = cfg === undefined;
 
     // Gets the type
-    var type = cfg?.type ?? MalusBonusType.MALUS; 
+    var type = cfg?.type ?? EffectType.MALUS; 
 
     // Creates the input
     var inp =  GrowInputs.createGrowInput({
@@ -69,13 +87,14 @@ function createInventorySlot(cfg?: MalusSchema) : Construct<Container>{
     });
 
     // Creates the type-selector
-    var iType = C("i", {
-        cls: TYPE_ICON[type],
-        evts: {
-            "click": (evt: Event)=> changeToNextIcon(MalusBonusType, TYPE_ICON, evt.target! as HTMLElement)
-        }
-    });
-    iType.dataset.type = type;
+    var typeSelector = C("div", {cls: "type", chld: [
+        C("i",{cls: EFFECT_ICON[type]}),
+        C("span", {text: EFFECT_NAMES[type]}),
+        C("div", {cls: "seperator"})
+    ], evts: {
+        "click": (evt: Event)=> changeToNext(EffectType, onTypeChanged, evt.currentTarget! as HTMLElement)
+    }});
+    typeSelector.dataset.type = type;
 
     return {
         input: inp.input,
@@ -83,17 +102,14 @@ function createInventorySlot(cfg?: MalusSchema) : Construct<Container>{
             iDelete
         },
         dom: C("div", {cls: "onefield"+(isShadow ? " shadow" : ""), chld: [
-            C("div", {cls: "type", chld: [
-                iType,
-                C("div", {cls: "seperator"})
-            ]}),
+            typeSelector,
             C("div", {cls: "name", chld: [
                 inp.dom,
                 C("div", {cls: "seperator"})
             ]}),
             C("div", {cls: "effect", chld: [
                 C("input", { attr: {
-                    placeholder: "Effekt des Malus/Bonus",
+                    placeholder: "Tatsächlicher Effekt",
                     value: isShadow ? "" : cfg!.effect
                 }}),
                 C("div", {cls: "seperator"})

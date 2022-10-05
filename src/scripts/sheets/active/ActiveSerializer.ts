@@ -1,4 +1,4 @@
-import { ActiveSchema, MalusBonusType } from "../../serialisation/Schemas";
+import { ActiveSchema, EffectType } from "../../serialisation/Schemas";
 import { getUiBindings } from "../../UiBindings";
 import { F, getNumberFromInput, SHADOW_FILTER } from "../../utils/Utils";
 import { SheetActive } from "../SheetActive";
@@ -22,7 +22,7 @@ function serializeMalusList(){
         // Gets name, effect and type
         var name = F<HTMLInputElement>("input",F(".name",row)).value;
         var effect = F<HTMLInputElement>("input",F(".effect",row)).value;
-        var type = F<HTMLElement>("i",F(".type",row)).dataset.type as MalusBonusType;
+        var type = F(".type",row).dataset.type as EffectType;
 
         return {
             name,

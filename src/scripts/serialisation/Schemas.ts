@@ -9,9 +9,10 @@ export enum WeaponType {
 }
 
 // Malus/Bonus type
-export enum MalusBonusType {
+export enum EffectType {
     MALUS = "malus",
-    BONUS = "bonus"
+    BONUS = "bonus",
+    PROPERTY = "property"
 }
 
 // Schema for a skill-table
@@ -105,7 +106,7 @@ export const SCHEMA = {
                         properties: {
                             name: { type: "string" },
                             effect: { type: "string" },
-                            type: { type: "string", enum: Object.values(MalusBonusType) }
+                            type: { type: "string", enum: Object.values(EffectType) }
                         }
                     }
                 },
@@ -238,7 +239,7 @@ export type CharacterSchema = {
 export type MalusSchema = {
     name: string,
     effect: string,
-    type?: MalusBonusType
+    type?: EffectType
 }
 
 export type ActiveSchema = {

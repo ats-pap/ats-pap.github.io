@@ -4,7 +4,7 @@ import { Construct, GrowingItemSupplier } from "../../utils/GrowingItems";
 import { GrowInputs } from "../../utils/GrowInput";
 import { create as C } from "../../utils/HTMLBuilder";
 import { StrongInputValidator } from "../../utils/StrongInputValidator";
-import { getShortName, getXParent, toggleEventListener, changeToNextIcon } from "../../utils/Utils";
+import { getShortName, getXParent, toggleEventListener, changeToNext } from "../../utils/Utils";
 import { SheetActive } from "../SheetActive";
 import { SheetInventory } from "../SheetInventory";
 
@@ -121,6 +121,14 @@ function onConvertElement(constr: Construct<Container>){
     SheetInventory.calculateWeapons();
 }
 
+// Event: When the weapon-type icon get's clicked
+function onIconTypeClicked(evt: Event){
+    // Changes to the next icon
+    changeToNext(WeaponType, (value: WeaponType, icon: HTMLElement)=>{
+        icon.className = WEAPON_TYPE_ICON[value];
+    }, evt.target! as HTMLElement);
+}
+
 function createInventorySlot(cfg?: WeaponSchema) : Construct<Container>{
     var isShadow = cfg === undefined;
 
@@ -155,7 +163,7 @@ function createInventorySlot(cfg?: WeaponSchema) : Construct<Container>{
     var iWeapons = C("i", {
         cls: WEAPON_TYPE_ICON[BASE_WP],
         evts: {
-            "click": (evt: Event)=> changeToNextIcon(WeaponType, WEAPON_TYPE_ICON, evt.target! as HTMLElement)
+            "click": onIconTypeClicked
         }
     });
     iWeapons.dataset.type = BASE_WP;
