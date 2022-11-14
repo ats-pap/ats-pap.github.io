@@ -7,7 +7,9 @@ import { changeToNext, F, getShortName, getXParent } from "../../utils/Utils";
 
 // Container for other elements that one grow-item holds
 type Container = {
-    iDelete: HTMLElement
+    iDelete: HTMLElement,
+    iMoveUp: HTMLElement,
+    iMoveDown: HTMLElement
 }
 
 // Reference to the grow-items handler
@@ -27,6 +29,50 @@ var EFFECT_NAMES: {[x in EffectType]: string} = {
     [EffectType.MALUS]: "Malus",
     [EffectType.PROPERTY]: "Eigenschaft",
     [EffectType.MUTATION]: "Mutation"
+}
+
+// Moves an element inside the list up or down if possible
+function moveElementInList(node: HTMLElement, up: boolean){
+    // Gets the list
+    var list = node.parentElement!;
+
+    // Gets the items
+    var elements = Array.from(list.children) as HTMLElement[];
+
+    // Gets the shadow-element
+    var shadow: HTMLElement = elements.pop() as HTMLElement;
+
+    // Index of the items
+    var idx = elements.findIndex(elm=>node==elm);
+
+    // Index of the to-swap item
+    var nextIdx = idx + (up ? -1 : 1);
+
+    // Checks if the index is valid
+    if(nextIdx < 0 || nextIdx >= elements.length)
+        return;
+
+    // Swaps the elements
+    var tmp = elements[idx];
+    elements[idx] = elements[nextIdx];
+    elements[nextIdx] = tmp;
+
+    // Updates the page
+    list.replaceChildren(...elements, shadow);
+}
+
+// Event: When the move-up icon get's clicked
+const onMoveUpClicked = (evt: Event) => {
+    // Gets the effect-line
+    var line = getXParent(evt.target as HTMLElement,2);
+    moveElementInList(line, true);
+}
+
+// Event: When the move-up icon get's clicked
+const onMoveDownClicked = (evt: Event) => {
+    // Gets the effect-line
+    var line = getXParent(evt.target as HTMLElement,2);
+    moveElementInList(line, false);
 }
 
 // Event: When the delete-icon get's clicked
@@ -54,6 +100,8 @@ function onConvertElement(constr: Construct<Container>){
 
     // Adds the event-listeners to the icons
     constr.with!.iDelete.addEventListener("click", onDeleteClicked);
+    constr.with!.iMoveDown.addEventListener("click", onMoveDownClicked);
+    constr.with!.iMoveUp.addEventListener("click", onMoveUpClicked);
 }
 
 // Event: When the type changes 
@@ -88,6 +136,18 @@ function createInventorySlot(cfg?: EffectSchema) : Construct<Container>{
             "click": isShadow ? undefined : onDeleteClicked
         }
     });
+    var iMoveUp = C("i", {
+        cls: "ic-arrow-up",
+        evts: {
+            "click": isShadow ? undefined : onMoveUpClicked
+        }
+    });
+    var iMoveDown = C("i", {
+        cls: "ic-arrow-down",
+        evts: {
+            "click": isShadow ? undefined : onMoveDownClicked
+        }
+    });
 
     // Creates the type-selector
     var typeSelector = C("div", {cls: "type", chld: [
@@ -102,7 +162,9 @@ function createInventorySlot(cfg?: EffectSchema) : Construct<Container>{
     return {
         input: inp.input,
         with: {
-            iDelete
+            iDelete,
+            iMoveDown,
+            iMoveUp
         },
         dom: C("div", {cls: "onefield"+(isShadow ? " shadow" : ""), chld: [
             typeSelector,
@@ -118,6 +180,8 @@ function createInventorySlot(cfg?: EffectSchema) : Construct<Container>{
                 C("div", {cls: "seperator"})
             ]}),
             C("div", {cls: "delete", chld: [
+                iMoveUp,
+                iMoveDown,
                 iDelete
             ]})            
         ]})

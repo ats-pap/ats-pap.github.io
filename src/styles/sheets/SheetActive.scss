@@ -21,6 +21,7 @@
             align-items: center;
 
             .onefield {
+
                 display: inline-flex;
                 div{
                     display: flex;
@@ -129,6 +130,12 @@
 
     .effectlist{
         margin: 10px;
+
+        .onefield {
+            &:first-child .delete .ic-arrow-up, &:nth-last-child(2) .delete .ic-arrow-down {
+                filter: opacity(0.5);
+            }
+        }
 
         &>*{
             display: flex;
