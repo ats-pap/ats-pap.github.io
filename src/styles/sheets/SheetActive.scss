@@ -193,6 +193,9 @@
             &[data-type="property"] span{
                 color: rgb(6, 101, 225);
             }
+            &[data-type="mutation"] span{
+                color: #a4a203;
+            }
         }
 
         .type i{

@@ -17,14 +17,16 @@ var growItemHandler: GrowingItemSupplier<Container, EffectSchema>;
 var EFFECT_ICON : {[x in EffectType]: string} = {
     [EffectType.BONUS]: "ic-bonus",
     [EffectType.MALUS]: "ic-malus",
-    [EffectType.PROPERTY]: "ic-property"
+    [EffectType.PROPERTY]: "ic-property",
+    [EffectType.MUTATION]: "ic-mutation"
 }
 
 // Mappings from effect-types to names
 var EFFECT_NAMES: {[x in EffectType]: string} = {
     [EffectType.BONUS]: "Bonus",
     [EffectType.MALUS]: "Malus",
-    [EffectType.PROPERTY]: "Eigenschaft"
+    [EffectType.PROPERTY]: "Eigenschaft",
+    [EffectType.MUTATION]: "Mutation"
 }
 
 // Event: When the delete-icon get's clicked

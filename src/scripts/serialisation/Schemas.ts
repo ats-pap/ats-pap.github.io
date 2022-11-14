@@ -12,7 +12,8 @@ export enum WeaponType {
 export enum EffectType {
     MALUS = "malus",
     BONUS = "bonus",
-    PROPERTY = "property"
+    PROPERTY = "property",
+    MUTATION = "mutation"
 }
 
 // Schema for a skill-table
