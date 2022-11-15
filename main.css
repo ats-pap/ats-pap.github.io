@@ -150,6 +150,8 @@
 
 .sheet.active .effectlist { margin: 10px; }
 
+.sheet.active .effectlist .onefield:first-child .delete .ic-arrow-up, .sheet.active .effectlist .onefield:nth-last-child(2) .delete .ic-arrow-down { filter: opacity(0.5); }
+
 .sheet.active .effectlist > * { display: flex; margin-bottom: .5rem; }
 
 .sheet.active .effectlist > *:last-child { margin-bottom: 0; }
@@ -179,6 +181,8 @@
 .sheet.active .effectlist .type[data-type="malus"] span { color: red; }
 
 .sheet.active .effectlist .type[data-type="property"] span { color: #0665e1; }
+
+.sheet.active .effectlist .type[data-type="mutation"] span { color: #a4a203; }
 
 .sheet.active .effectlist .type i { cursor: pointer; }
 
@@ -289,6 +293,12 @@ i.ic-sniper { background: url("resources/icons/TwohandedWeapon.png"); }
 i.ic-weapons { background: url("resources/icons/Weapons.png"); }
 
 i.ic-property { background: url("resources/icons/Property.png"); }
+
+i.ic-mutation { background: url("resources/icons/GeneMutation.png"); }
+
+i.ic-arrow-up { background: url("resources/icons/ArrowDown.png"); }
+
+i.ic-arrow-down { background: url("resources/icons/ArrowUp.png"); }
 
 body.initState .overlay-base { opacity: 0%; }
 
