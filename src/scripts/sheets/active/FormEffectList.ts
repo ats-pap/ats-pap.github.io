@@ -46,7 +46,7 @@ function moveElementInList(node: HTMLElement, up: boolean){
     var idx = elements.findIndex(elm=>node==elm);
 
     // Index of the to-swap item
-    var nextIdx = idx + (up ? -1 : 1);
+    var nextIdx = idx + (up ? 1 : -1);
 
     // Checks if the index is valid
     if(nextIdx < 0 || nextIdx >= elements.length)
