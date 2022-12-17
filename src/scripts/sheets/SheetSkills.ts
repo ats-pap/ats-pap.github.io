@@ -150,7 +150,11 @@ function init(){
     for(var key in tables){
         const keyMap = key as SkillTableKey;
         suppliers[keyMap] = new GrowingItemSupplier(tables[keyMap].values, (cfg?: SkillItemSchema)=>createInventorySlot(keyMap, cfg), {
-            onConvertShadow: constr=>onConvertElement(keyMap, constr)
+            onConvertShadow: constr=>onConvertElement(keyMap, constr),
+            onAutoDeleteCB: constr=>{
+                SheetSkills.calculatePointsLeft();
+                SheetSkills.calculateTabel(keyMap);
+            }
         });
     }
 

@@ -11,7 +11,10 @@ export type GrowItemSettings<T> = {
     autoDelete?: boolean,
 
     // Event: When a shadow element get's converted to a normal one
-    onConvertShadow?: ElementEvent<T>
+    onConvertShadow?: ElementEvent<T>,
+
+    // Event, which executes when an element get's autodeleted to act on it
+    onAutoDeleteCB?: ElementEvent<T>
 }
 
 // Event-handler for simple events
@@ -94,8 +97,14 @@ export class GrowingItemSupplier<T, Cfg>{
         var str: Construct<T> = (evt.target as any).__grow_construct;
 
         // Checks if the important field got deleted
-        if ((evt.target as HTMLInputElement).value.trim().length <= 0)
+        if ((evt.target as HTMLInputElement).value.trim().length <= 0){
+            // Delete the element
             this.deleteNormalElement(str);
+            
+            // Executes the event
+            if(this.settings.onAutoDeleteCB !== undefined)
+                this.settings.onAutoDeleteCB(str);
+        }
     }
 
     // Event: When a shadow element receives input
