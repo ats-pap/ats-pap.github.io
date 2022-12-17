@@ -63,6 +63,10 @@ export class GrowingItemSupplier<T, Cfg>{
         (elm.input as any).__grow_construct =
         (elm.dom as any).__grow_construct = elm;
 
+        // Appends the autodelete change event if required
+        if (this.settings.autoDelete)
+            elm.input.addEventListener("change", this.onNormalChange as any);
+
         // Inserts the element before the shadow-element
         this.base.insertBefore(elm.dom, this.base.lastChild);
     }
