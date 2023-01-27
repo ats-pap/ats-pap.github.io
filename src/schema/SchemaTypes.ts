@@ -9,7 +9,9 @@ export type CharacterSchema = {
     religion: string,
     job: string,
     family: string,
-    portraitURL?: string
+    portraitURL?: string,
+    fraction?: string,
+    origin?: string
 }
 
 //#endregion

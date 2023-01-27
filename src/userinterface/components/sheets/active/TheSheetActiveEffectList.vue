@@ -96,7 +96,7 @@ export default {
     <ListItem
         v-for="itm, idx in store.active.maluslist" :key="idx"
         
-        @change="onShadowChange"
+        @change="onNormalChange(itm)"
         @delete="onItemRequestDelete(itm)"
         @move="onItemMoveRequest(itm, $event)"
 

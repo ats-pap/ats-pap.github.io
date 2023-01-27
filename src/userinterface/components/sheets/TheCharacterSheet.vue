@@ -15,11 +15,11 @@ export default {
 
 <template>
 <h1>Charakterbogen</h1>
-<LeftRightSplit>
-    <FieldsTable />
-    <Portrait />
-</LeftRightSplit>
+<FieldsTable />
 </template>
 
 <style scoped lang="scss">
+h1{
+    margin-bottom: .8rem;
+}
 </style>

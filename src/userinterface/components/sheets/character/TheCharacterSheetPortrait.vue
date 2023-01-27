@@ -78,7 +78,7 @@ export default {
 </script>
 
 <template>
-<div class="portrait">
+<div style="gridArea: portrait" class="portrait">
     <span>Portrait</span>
     <div
         @click="onPreviewClicked"
@@ -95,10 +95,8 @@ export default {
 .portrait{
     border: $fieldBorder;
     border-radius: $fieldBorderRadius;
-    margin: 10px;
 
     text-align: center;
-    width: 15rem;
     height: 100%;
     display: inline-block;
     overflow: hidden;

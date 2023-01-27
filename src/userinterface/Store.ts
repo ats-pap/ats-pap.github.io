@@ -14,6 +14,8 @@ export const useStore = defineStore("base", {
             religion: "",
             job: "",
             family: "",
+            fraction: "",
+            origin: "",
             portraitURL: undefined
         } as CharacterSchema,
 

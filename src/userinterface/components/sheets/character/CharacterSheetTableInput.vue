@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useStore } from '@/userinterface/Store';
 import type {CharacterSchema} from "@/schema/SchemaTypes";
+import type { PropType } from 'vue';
 
 </script>
 
@@ -16,7 +17,7 @@ export default {
         // Name of the property when saving / loading
         keyName: {
             required: true,
-            type: String,
+            type: String as PropType<keyof CharacterSchema>,
         },
 
         // Placeholder text
@@ -29,6 +30,11 @@ export default {
         title: {
             required: true,
             type: String,
+        },
+
+        useTextfield: {
+            type: Boolean,
+            default: false
         }
     },
 }
@@ -36,11 +42,21 @@ export default {
 </script>
 
 <template>  
-<div class="field">
+<div class="field" :style="{ gridArea: keyName }">
     <label :for="'character-'+keyName">{{ title }}</label>
-    <input v-model="store.character[keyName as keyof CharacterSchema]" :id="'character-'+keyName" type="text" :placeholder="placeholder" :name="keyName"/>
+    <input v-if="!useTextfield" v-model="store.character[keyName]" :id="'character-'+keyName" type="text" :placeholder="placeholder"/>
+    <textarea v-else v-model="store.character[keyName]" :id="'character-'+keyName" type="text" :placeholder="placeholder"></textarea>
 </div>
 </template>
 
 <style scoped lang="scss">
+textarea {
+    width:100%;
+    height:100%;
+    resize: none;
+    outline: none;
+    padding: 0.8rem;
+    border: 0;
+    font-size: 1.4rem;
+}
 </style>
