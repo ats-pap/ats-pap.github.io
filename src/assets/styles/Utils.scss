@@ -1,0 +1,6 @@
+@import "Settings.scss";
+
+.shadow, .shadow *{
+    border-color: $disabledColor !important;
+    color: $disabledColor;
+}
