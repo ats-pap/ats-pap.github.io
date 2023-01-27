@@ -46,7 +46,9 @@ export enum EffectType {
     MALUS = "malus",
     BONUS = "bonus",
     PROPERTY = "property",
-    MUTATION = "mutation"
+    MUTATION = "mutation",
+    ILLNESS = "illness",
+    PHY_ILLNESS = "psy_illness"
 }
 
 export type EffectSchema = {

@@ -36,6 +36,8 @@ export default {
 <p><Icon name="arrow-up"/>von<a target="_blank" href="https://www.flaticon.com/free-icons/up-arrow">Roundicons - Flaticon</a>.</p>
 <p><Icon name="arrow-up"/>von<a target="_blank" href="https://www.flaticon.com/free-icons/arrow">Freepik - Flaticon</a>.</p>
 <p><Icon name="ats"/>ist eine Editation des<a target="_blank" href="https://artandtech.space/">ARTandTECH.space</a>-Logos.</p>
+<p><Icon name="illness"/>wurde editiert. Das Original ist von <a target="_blank" href="https://icons8.com/icon/52772/coronavirus">Icons8</a></p>
+<p><Icon name="psy-illness"/>wurde editiert. Das Original ist von <a href="https://www.flaticon.com/free-icons/psychology" title="psychology icons">Freepik - Flaticon</a></p>
 </template>
 
 <style scoped lang="scss">

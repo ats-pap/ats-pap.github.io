@@ -16,7 +16,9 @@ const EFFECT_ICON : {[x in EffectType]: string} = {
     [EffectType.BONUS]: "bonus",
     [EffectType.MALUS]: "malus",
     [EffectType.PROPERTY]: "property",
-    [EffectType.MUTATION]: "mutation"
+    [EffectType.MUTATION]: "mutation",
+    [EffectType.ILLNESS]: "illness",
+    [EffectType.PHY_ILLNESS]: "psy-illness",
 }
 
 // Mappings from effect-types to names
@@ -24,7 +26,9 @@ const EFFECT_NAMES: {[x in EffectType]: string} = {
     [EffectType.BONUS]: "Bonus",
     [EffectType.MALUS]: "Malus",
     [EffectType.PROPERTY]: "Eigenschaft",
-    [EffectType.MUTATION]: "Mutation"
+    [EffectType.MUTATION]: "Mutation",
+    [EffectType.ILLNESS]: "Krankheit",
+    [EffectType.PHY_ILLNESS]: "Psy. Krankheit"
 }
 
 export default {
@@ -56,9 +60,9 @@ export default {
 
     methods: {
         // Event: When the icon gets clicked
-        onIconClicked(){
+        onIconClicked(forward: boolean){
             // Switches to the next type
-            this.item.type = changeToNext(EffectType, this.item.type || EffectType.MALUS);
+            this.item.type = changeToNext(EffectType, this.item.type || EffectType.MALUS, forward);
         }
     },
 
@@ -69,7 +73,7 @@ export default {
 
 <template>
 <Onefield :classList="isShadow ? 'shadow' : ''">
-    <div @click="onIconClicked" :data-type="getTypeIcon" class="type">
+    <div @click="onIconClicked(true)" @contextmenu.prevent="onIconClicked(false)" :data-type="getTypeIcon" class="type">
         <Icon :name="getTypeIcon"/>
         <span>{{ getTypeName }}</span>
         <Seperator/>
@@ -164,9 +168,8 @@ export default {
 }
 
 .type{
-    *{
-        cursor: pointer;
-    }
+    user-select: none;
+    cursor: pointer;
 
     span{
         margin-right: .5rem;
@@ -183,6 +186,14 @@ export default {
     }
     &[data-type="mutation"] span{
         color: #a4a203;
+    }
+
+    &[data-type="illness"] span{
+        color: #dc8027;
+    }
+
+    &[data-type="psy-illness"] span{
+        color: #9b64df;
     }
 }
 

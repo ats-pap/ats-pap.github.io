@@ -47,4 +47,6 @@ export default {
 .ic-mutation{ background: url("@/assets/icons/GeneMutation.png"); }
 .ic-arrow-up{ background: url("@/assets/icons/ArrowDown.png"); }
 .ic-arrow-down{ background: url("@/assets/icons/ArrowUp.png"); }
+.ic-illness{ background: url("@/assets/icons/Illness.png"); }
+.ic-psy-illness{ background: url("@/assets/icons/PsyIllness.png"); }
 </style>

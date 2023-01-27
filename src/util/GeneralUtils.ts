@@ -1,8 +1,9 @@
 /**
  * Takes in a @param base enum and an @param value-element from that enum.
+ * If @param forward is negative, the change occurres into the reverse direction
  * Returns the next element in line after the given one
  */
-export function changeToNext<T extends string,K extends string>(base: {[x in K]: T}, value: T){
+export function changeToNext<T extends string,K extends string>(base: {[x in K]: T}, value: T, forward: boolean = true){
     // Gets the values and keys
     var values = [];
     for(var x in base) values.push(base[x]);
@@ -10,10 +11,10 @@ export function changeToNext<T extends string,K extends string>(base: {[x in K]:
     var keys = Object.keys(base);
 
     // Gets the next value-index
-    var nextIdx = values.indexOf(value)+1;
+    var nextIdx = values.indexOf(value) + (forward ? 1 : -1);
 
-    if(nextIdx >= keys.length)
-        nextIdx=0;
+    if(nextIdx >= keys.length) nextIdx=0;
+    if(nextIdx < 0) nextIdx = keys.length-1;
 
     // Gets the next value
     var nextValue = values[nextIdx] as T;
