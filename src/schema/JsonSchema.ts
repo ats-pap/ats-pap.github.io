@@ -1,5 +1,12 @@
 import { EffectType, WeaponType } from "./SchemaTypes";
 
+// Changes/Defaults for the given json-schema
+export const CHANGE_DEFAULTS = {
+    "inventory.items.weight": 10,
+    "inventory.weapons.weight": 10,
+    "inventory.allowedWeight": 400,
+    "inventory.weightMalus": 0
+}
 
 // Schema for a skill-table
 const ACT_TABLE_SCHEMA = {

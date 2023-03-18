@@ -1,4 +1,4 @@
-import { SCHEMA } from "@/schema/JsonSchema";
+import { SCHEMA, CHANGE_DEFAULTS } from "@/schema/JsonSchema";
 import type { Schema } from "@/schema/SchemaTypes";
 import { useStore } from "@/userinterface/Store";
 import { dataURLtoFile, toDataURL } from "@/util/GeneralUtils";
@@ -18,6 +18,37 @@ export async function save(){
     return await exportStore();
 }
 
+// TODO: make this function less sketchy
+function applyDefaults(schema: Schema){
+
+    function nextLeyer(value: any, current: any, left: string[]){
+        console.log("Layer: ", left, "/", current);
+        if(left.length == 1){
+
+            if(current.constructor.name == "Array"){
+                for(var itm in current){
+                    current[(itm as any)][left[0]] = value;
+                }
+                return
+            }
+
+            current[left[0]] = value;
+            return
+        }
+
+        nextLeyer(value, current[left[0]], left.slice(1));
+
+    }
+    
+    for(var key in CHANGE_DEFAULTS){
+
+        nextLeyer((CHANGE_DEFAULTS as any)[key] as any, schema, (key as string).split("."))
+
+    
+
+    }
+}
+
 // Loads a raw json object into the application state
 // Returns if that was successfull
 export function load(raw: Object) : boolean{
@@ -27,6 +58,9 @@ export function load(raw: Object) : boolean{
         console.log("Failed to load file: ", validateSchema.errors);
         return false;
     }
+
+    // Applys changes
+    applyDefaults(raw);
 
     // Loads the store
     importStore(raw);
