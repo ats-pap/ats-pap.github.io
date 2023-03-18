@@ -38,7 +38,7 @@ export default {
 <h1>Skills</h1>
 <SheetTable />
 
-<p id="skills-points">
+<p class="sheet-footer">
     Von
     <input type="number" min="0" max="999" placeholder="0" v-model.number="store.skills.allowedPoints">
     zu vergebenden Punkten sind noch
@@ -48,30 +48,5 @@ export default {
 </template>
 
 <style scoped lang="scss">
-
-@import "@/assets/styles/Settings.scss";
-
-.negative{
-    color: $negativeColor;
-}
-
-p{
-    margin-top: 1rem;
-    text-align: center;
-    
-    &, input{
-        font-size: 1.8rem;
-    }
-    input {
-        width: 4.5rem;
-        outline: none;
-        border: none;
-    }
-
-    span, input {
-        margin: .3rem;
-        text-align: center;
-    }
-}
 
 </style>

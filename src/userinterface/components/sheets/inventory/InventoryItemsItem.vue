@@ -43,12 +43,15 @@ export default {
 <Onefield :classList="getBaseClasses">
     <div class="amt">
         <GrowInput v-model.number="item.amount" maxlength="5" type="number" value="1" min="1" max="99999" />
-    </div>
-    <div class="times">
         <span>x</span>
     </div>
     <div class="name" >
         <input @change="$emit('change')" v-model="item.name" type="text">
+        <Seperator />
+    </div>
+    <div class="weight">
+        <GrowInput v-model.number="item.weight" maxlength="5" type="number" value="1" min="0" max="99999" />
+        <span>g</span>
         <Seperator />
     </div>
     <div class="actions">
@@ -62,10 +65,11 @@ export default {
 
 <style scoped lang="scss">
 
-
-
-.amt{
+.amt, .weight{
     display: flex;
+    :deep(.grow-input){
+        min-width: 3rem;
+    }
 
     :deep(.grow-input){
         min-width: 3rem;
@@ -85,15 +89,11 @@ export default {
     }
 }
 
-.times{
-    display: flex;
-    align-items: center;
-
-    span{
-        font-family: "NewTelegraph";
-        font-size: 1.2rem;
-        margin: 0 .4rem;
-    }
+span{
+    font-family: "NewTelegraph";
+    font-size: 1.2rem;
+    margin: 0 .4rem;
+    align-self: center;
 }
 
 .actions {

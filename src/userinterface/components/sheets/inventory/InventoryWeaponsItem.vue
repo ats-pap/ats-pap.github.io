@@ -68,6 +68,11 @@ export default {
         <GrowInput v-model="item.damage" placeholder="2W6" @change="$emit('change')" type="text" maxlength="20"/>
         <Seperator/>
     </div>
+    <div class="weight">
+        <GrowInput v-model.number="item.weight" maxlength="5" type="number" value="1" min="0" max="99999" />
+        <span>g</span>
+        <Seperator/>
+    </div>
     <div class="actions">
         <Icon @click="$emit('lock')" :name="item.locked ? 'locked' : 'unlocked'" />
         <Icon @click="$emit('equip')" name="equip" />
@@ -92,6 +97,24 @@ export default {
         :deep(*){
             font-size: 1.2rem;
         }
+    }
+}
+
+span{
+    font-family: "NewTelegraph";
+    font-size: 1.2rem;
+    margin: 0 .4rem;
+    align-self: center;
+}
+.weight{
+    display: flex;
+    align-items: unset;
+    :deep(.grow-input){
+        min-width: 3rem;
+    }
+
+    :deep(.grow-input){
+        min-width: 3rem;
     }
 }
 

@@ -16,13 +16,7 @@ export default {
     components: { InventoryHeaderBar, Item },
 
     data(){return {
-        shadow: {
-            category: "Pistole",
-            damage: "2W6",
-            locked: false,
-            name: "",
-            type: WeaponType.ONE_HAND
-        } as WeaponSchema
+        shadow: this.generateDefaultItem()
     }},
 
     computed: {
@@ -40,6 +34,20 @@ export default {
 
     methods: {
 
+
+        // Generates the default shadow item
+        generateDefaultItem() : WeaponSchema{
+            return {
+                category: "Pistole",
+                damage: "2W6",
+                locked: false,
+                name: "",
+                type: WeaponType.ONE_HAND,
+                weight: 10
+            };
+        },
+
+
         // Event: When the shadow element changes
         onShadowChange(){
             // Ensures that the element is not empty
@@ -50,13 +58,7 @@ export default {
             this.baseStore.inventory_registerWeapon(this.shadow);
 
             // Resets the shadow element
-            this.shadow = {
-                category: "Pistole",
-                damage: "2W6",
-                locked: false,
-                name: "",
-                type: WeaponType.ONE_HAND
-            }
+            this.shadow = this.generateDefaultItem();
         },
 
         // Event: Whenever any normal element changes

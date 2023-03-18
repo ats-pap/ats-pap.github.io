@@ -55,6 +55,8 @@ export const useStore = defineStore("base", {
 
         // Inventory sheet
         inventory: {
+            allowedWeight: 400,
+            weightMalus: 0,
             items: [] as any,
             weapons: [] as any
         } as InventorySchema,

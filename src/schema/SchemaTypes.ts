@@ -81,7 +81,8 @@ export type ActiveSchema = {
 export type ItemSchema = {
     name: string,
     amount: number,
-    locked: boolean
+    locked: boolean,
+    weight: number
 }
 
 // Weapon types
@@ -97,10 +98,13 @@ export type WeaponSchema = {
     type: WeaponType,
     damage: string,
     category: string,
-    locked: boolean
+    locked: boolean,
+    weight: number
 }
 
 export type InventorySchema = {
+    allowedWeight: number,
+    weightMalus: number,
     items: ItemSchema[],
     weapons: WeaponSchema[]
 };

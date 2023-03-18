@@ -56,3 +56,25 @@ body,html{
     width: 100%;
     height: 100%;
 }
+.negative{
+    color: $negativeColor;
+}
+
+p.sheet-footer{
+    margin-top: 1rem;
+    text-align: center;
+    
+    &, input{
+        font-size: 1.8rem;
+    }
+    input {
+        width: 4.5rem;
+        outline: none;
+        border: none;
+    }
+
+    span, input {
+        margin: .3rem;
+        text-align: center;
+    }
+}

@@ -155,6 +155,8 @@ export const SCHEMA = {
             ],
 
             properties: {
+                allowedWeight: { type: "integer", minimum: 0, maximum: 99999 },
+                weightMalus: { type: "integer", minimum: -9999, maximum: 9999 },
                 items: {
                     type: "array",
 
@@ -170,7 +172,8 @@ export const SCHEMA = {
                         properties: {
                             name: { type: "string" },
                             amount: { type: "integer", minimum: 1, maximum: 99999 },
-                            locked: { type: "boolean" }
+                            locked: { type: "boolean" },
+                            weight: { type: "integer", minimum: 0, maximum: 99999 }
                         }
                     }
                 },
@@ -193,7 +196,8 @@ export const SCHEMA = {
                             type: { type: "string", enum: (Object as any).values(WeaponType)},
                             damage: { type: "string" },
                             category: { type: "string" },
-                            locked: { type: "boolean" }
+                            locked: { type: "boolean" },
+                            weight: { type: "integer", minimum: 0, maximum: 99999 }
                         }
                     }
                 },

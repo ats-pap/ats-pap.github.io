@@ -16,11 +16,7 @@ export default {
     components: { InventoryHeaderBar },
 
     data(){return {
-        shadow: {
-            amount: 1,
-            locked: false,
-            name: ""
-        } as ItemSchema
+        shadow: this.generateDefaultItem()
     }},
 
     computed: {
@@ -36,6 +32,17 @@ export default {
     },
 
     methods: {
+
+        // Generates the default shadow item
+        generateDefaultItem() : ItemSchema{
+            return {
+                amount: 1,
+                locked: false,
+                name: "",
+                weight: 10
+            };
+        },
+
         // Event: When the shadow element changes
         onShadowChange(){
             // Ensures that the element is not empty
@@ -46,11 +53,7 @@ export default {
             this.baseStore.inventory_registerItem(this.shadow);
 
             // Resets the shadow element
-            this.shadow = {
-                amount: 1,
-                locked: false,
-                name: ""
-            }
+            this.shadow = this.generateDefaultItem();
         },
 
         // Event: Whenever any normal element changes
