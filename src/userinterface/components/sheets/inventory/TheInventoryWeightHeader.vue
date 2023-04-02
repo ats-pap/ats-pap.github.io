@@ -17,7 +17,7 @@ export default {
         getWeightLeft(): number {
             // Gets the weight of all weapons and items
             var wpnWeight = this.baseStore.inventory.weapons.map(itm => itm.weight).reduce((a, b) => a + b, 0);
-            var itmWeight = this.baseStore.inventory.items.map(itm => itm.weight).reduce((a, b) => a + b, 0);
+            var itmWeight = this.baseStore.inventory.items.map(itm => itm.weight * itm.amount).reduce((a, b) => a + b, 0);
             return this.baseStore.inventory.allowedWeight - this.baseStore.inventory.weightMalus - wpnWeight - itmWeight;
         }
     },
