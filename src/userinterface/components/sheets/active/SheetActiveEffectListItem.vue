@@ -83,7 +83,7 @@ export default {
         <Seperator/>
     </div>
     <div class="effect">
-        <input placeholder="Tatsächlicher Effekt" value="">
+        <input v-model="item.effect" placeholder="Tatsächlicher Effekt">
         <Seperator/>
     </div>
     <div class="delete">
