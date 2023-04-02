@@ -18,35 +18,45 @@ export async function save(){
     return await exportStore();
 }
 
-// TODO: make this function less sketchy
+// Applys the default values to a given schema to support downwards compatibility
 function applyDefaults(schema: Schema){
 
-    function nextLeyer(value: any, current: any, left: string[]){
-        console.log("Layer: ", left, "/", current);
-        if(left.length == 1){
+    /**
+     * Recursive function to apply changes to layers
+     * @param value the final value to be set
+     * @param key of the next layer to go through 
+     * @param layersLeft
+     *          how many layers the change must go through.
+     *          If there is only one item left, the end has been reached and the
+     *          change is applied.
+     *          The layers also may contain array if action should be performed on
+     *          multiple items.
+     */
+    function nextLayer(value: any, editable: any, layersLeft: string[]){
 
-            if(current.constructor.name == "Array"){
-                for(var itm in current){
-                    current[(itm as any)][left[0]] = value;
-                }
-                return
-            }
+        // Gets the current key on the object
+        const key = layersLeft[0];
 
-            current[left[0]] = value;
-            return
+        // Checks if this is the last layer
+        if(layersLeft.length == 1){
+            // Updates the value if it's still the default
+            if(editable[key] === undefined)
+                editable[key] = value;
+            return;
         }
 
-        nextLeyer(value, current[left[0]], left.slice(1));
-
+        // Checks if the current layer is an array
+        if(editable[key].constructor.name == "Array"){
+            for(var newkey in editable[key])
+                nextLayer(value, editable[key][newkey], layersLeft.slice(1))
+        }else{
+            nextLayer(value, editable[key], layersLeft.slice(1))
+        }
     }
-    
-    for(var key in CHANGE_DEFAULTS){
 
-        nextLeyer((CHANGE_DEFAULTS as any)[key] as any, schema, (key as string).split("."))
-
-    
-
-    }
+    // Applies the changes
+    for(var key in CHANGE_DEFAULTS)
+        nextLayer((CHANGE_DEFAULTS as any)[key] as any, schema, (key as string).split("."))
 }
 
 // Loads a raw json object into the application state
@@ -78,8 +88,10 @@ function importStore(schema: Schema){
         URL.revokeObjectURL(store.character.portraitURL);
 
     // Creates the new url
-    schema.character.portraitURL = URL.createObjectURL(dataURLtoFile((schema.character as any).portrait, ""));
-    (schema.character as any).portrait = undefined;
+    if((schema.character as any).portrait !== undefined){
+        schema.character.portraitURL = URL.createObjectURL(dataURLtoFile((schema.character as any).portrait, ""));
+        (schema.character as any).portrait = undefined;
+    }
 
     store.character = schema.character;
     store.active = schema.active;
