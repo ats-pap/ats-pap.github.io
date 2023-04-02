@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Defaults } from '@/Defaults';
 import { WeaponType, type WeaponSchema } from '@/schema/SchemaTypes';
 import { useStore } from '@/userinterface/Store';
 import { changeToNext, getShortName } from '@/util/GeneralUtils';
@@ -16,7 +17,7 @@ export default {
     components: { InventoryHeaderBar, Item },
 
     data(){return {
-        shadow: this.generateDefaultItem()
+        shadow: { ...Defaults.Arrays.inventory.weapons } as WeaponSchema
     }},
 
     computed: {
@@ -34,20 +35,6 @@ export default {
 
     methods: {
 
-
-        // Generates the default shadow item
-        generateDefaultItem() : WeaponSchema{
-            return {
-                category: "Pistole",
-                damage: "2W6",
-                locked: false,
-                name: "",
-                type: WeaponType.ONE_HAND,
-                weight: 10
-            };
-        },
-
-
         // Event: When the shadow element changes
         onShadowChange(){
             // Ensures that the element is not empty
@@ -58,7 +45,7 @@ export default {
             this.baseStore.inventory_registerWeapon(this.shadow);
 
             // Resets the shadow element
-            this.shadow = this.generateDefaultItem();
+            this.shadow = { ...Defaults.Arrays.inventory.weapons } as WeaponSchema;
         },
 
         // Event: Whenever any normal element changes

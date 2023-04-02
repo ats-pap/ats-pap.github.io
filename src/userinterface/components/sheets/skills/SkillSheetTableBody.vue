@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Defaults } from '@/Defaults';
 import type { SkillItemSchema, SkillTableCollectionSchema } from '@/schema/SchemaTypes';
 import { useStore } from '@/userinterface/Store';
 import { mapStores } from 'pinia';
@@ -25,11 +26,7 @@ export default {
     },
 
     data(){return {
-        shadow: {
-            name: "",
-            points: 0,
-            bonusPoints: 0
-        } as SkillItemSchema
+        shadow: { ...Defaults.Arrays.skills.items } as SkillItemSchema
     }},
 
     computed: {
@@ -51,11 +48,7 @@ export default {
             this.baseStore.skills_registerNewItem(this.tableName, this.shadow);
 
             // Resets the shadow element
-            this.shadow = {
-                bonusPoints: 0,
-                name: "",
-                points: 0
-            }
+            this.shadow = { ...Defaults.Arrays.skills.items }
         },
 
         // Event: Whenever any normal element changes

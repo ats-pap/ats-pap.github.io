@@ -56,7 +56,7 @@ export enum EffectType {
 export type EffectSchema = {
     name: string,
     effect: string,
-    type?: EffectType
+    type: EffectType
 }
 
 export type ActiveSchemaHealth = {

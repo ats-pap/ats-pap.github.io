@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Defaults } from '@/Defaults';
 import type { ItemSchema } from '@/schema/SchemaTypes';
 import { useStore } from '@/userinterface/Store';
 import { getShortName } from '@/util/GeneralUtils';
@@ -16,7 +17,7 @@ export default {
     components: { InventoryHeaderBar },
 
     data(){return {
-        shadow: this.generateDefaultItem()
+        shadow: { ...Defaults.Arrays.inventory.items } as ItemSchema
     }},
 
     computed: {
@@ -33,16 +34,6 @@ export default {
 
     methods: {
 
-        // Generates the default shadow item
-        generateDefaultItem() : ItemSchema{
-            return {
-                amount: 1,
-                locked: false,
-                name: "",
-                weight: 10
-            };
-        },
-
         // Event: When the shadow element changes
         onShadowChange(){
             // Ensures that the element is not empty
@@ -53,7 +44,7 @@ export default {
             this.baseStore.inventory_registerItem(this.shadow);
 
             // Resets the shadow element
-            this.shadow = this.generateDefaultItem();
+            this.shadow = { ...Defaults.Arrays.inventory.items } as ItemSchema;
         },
 
         // Event: Whenever any normal element changes

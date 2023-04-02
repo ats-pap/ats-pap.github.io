@@ -1,65 +1,11 @@
-
-import type { ActiveSchema, CharacterSchema, EffectSchema, InventorySchema, SkillItemSchema, SkillsSchema, SkillTableCollectionSchema, ItemSchema, WeaponSchema, OverlaySchema, OverlayType, SkillTableSchema } from "@/schema/SchemaTypes";
+import { Defaults } from "@/Defaults";
+import type { EffectSchema, SkillItemSchema, SkillTableCollectionSchema, ItemSchema, WeaponSchema, OverlaySchema, OverlayType, SkillTableSchema } from "@/schema/SchemaTypes";
 import { defineStore } from "pinia";
 
 export const useStore = defineStore("base", {
     state: ()=> { return {
         
-        // Character sheet
-        character: {
-            name: "",
-            gender: "",
-            age: "",
-            body: "",
-            religion: "",
-            job: "",
-            family: "",
-            fraction: "",
-            origin: "",
-            portraitURL: undefined
-        } as CharacterSchema,
-
-        // Active sheet
-        active: {
-            health: {
-                armor: 0,
-                base: 100,
-                damage: 0
-            },
-            ammunition: 20,
-            item: "",
-            notes: "",
-            maluslist: [
-
-            ]
-        } as ActiveSchema,
-
-        // Skill sheet
-        skills: {
-            allowedPoints: 400,
-            tables: {
-                act: {
-                    mindflashes: 0,
-                    items: [] as any
-                },
-                science: {
-                    mindflashes: 0,
-                    items: [] as any
-                },
-                social: {
-                    mindflashes: 0,
-                    items: [] as any
-                }
-            }
-        } as SkillsSchema,
-
-        // Inventory sheet
-        inventory: {
-            allowedWeight: 400,
-            weightMalus: 0,
-            items: [] as any,
-            weapons: [] as any
-        } as InventorySchema,
+        ...Defaults.Sheet,
 
         // Internal app data
         app: {

@@ -50,11 +50,11 @@ export default {
 
     computed: {
         getTypeName(){
-            return EFFECT_NAMES[this.item.type || EffectType.MALUS]
+            return EFFECT_NAMES[this.item.type]
         },
 
         getTypeIcon(){
-            return EFFECT_ICON[this.item.type || EffectType.MALUS]
+            return EFFECT_ICON[this.item.type]
         }
     },
 
@@ -62,7 +62,7 @@ export default {
         // Event: When the icon gets clicked
         onIconClicked(forward: boolean){
             // Switches to the next type
-            this.item.type = changeToNext(EffectType, this.item.type || EffectType.MALUS, forward);
+            this.item.type = changeToNext(EffectType, this.item.type, forward);
         }
     },
 

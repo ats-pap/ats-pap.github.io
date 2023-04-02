@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { EffectType, type EffectSchema } from '@/schema/SchemaTypes';
+import type { EffectSchema } from '@/schema/SchemaTypes';
 import { useStore } from '@/userinterface/Store';
 import { mapStores } from 'pinia';
 import ListItem from './SheetActiveEffectListItem.vue';
 import { getShortName } from "@/util/GeneralUtils";
+import { Defaults } from '@/Defaults';
  
 const store = useStore()
 
@@ -14,11 +15,7 @@ const store = useStore()
 export default {
     components: { ListItem },
     data(){return {
-        shadow: {
-            name: "",
-            effect: "",
-            type: EffectType.MALUS
-        } as EffectSchema
+        shadow: { ...Defaults.Arrays.active.maluslist } as EffectSchema
     }},
 
     computed: {
@@ -36,11 +33,7 @@ export default {
             this.baseStore.active_registerEffect(this.shadow);
 
             // Resets the shadow element
-            this.shadow = {
-                effect: "",
-                name: "",
-                type: EffectType.MALUS
-            }
+            this.shadow = { ...Defaults.Arrays.active.maluslist } as EffectSchema
         },
 
         // Event: Whenever any normal element changes
