@@ -5,6 +5,7 @@ import Onefield from '../../utils/Onefield.vue';
 import Seperator from "../../utils/OnefieldSeperator.vue"
 import type { SkillItemSchema, SkillTableCollectionSchema } from '@/schema/SchemaTypes';
 import type { PropType } from 'vue';
+import { mapStores } from 'pinia';
 
 </script>
 
@@ -49,8 +50,9 @@ export default {
     }},
 
     computed: {
+        ...mapStores(useStore),
         getResult(){
-            return (this.item.points) + (this.item.bonusPoints);
+            return this.item.points + this.item.bonusPoints + this.baseStore.skills_get_category_points(this.tableName);
         }
     },
 

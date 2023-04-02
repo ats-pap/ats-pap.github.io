@@ -29,11 +29,10 @@ export default {
 
     computed: {
         ...mapStores(useStore),
-
+        
         getCategoryPoints(){
-
-             // Calculates the category points
-            return Math.round(this.baseStore.skills.tables[this.keyName].items.map(row=>row.points).reduce((a,b)=>a+b, 0) / 10);
+            // Calculates the category points
+            return this.baseStore.skills_get_category_points(this.keyName);
         },
 
         getAllMindflashes(){

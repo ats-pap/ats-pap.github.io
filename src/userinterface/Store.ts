@@ -1,5 +1,5 @@
 
-import type { ActiveSchema, CharacterSchema, EffectSchema, InventorySchema, SkillItemSchema, SkillsSchema, SkillTableCollectionSchema, ItemSchema, WeaponSchema, OverlaySchema, OverlayType } from "@/schema/SchemaTypes";
+import type { ActiveSchema, CharacterSchema, EffectSchema, InventorySchema, SkillItemSchema, SkillsSchema, SkillTableCollectionSchema, ItemSchema, WeaponSchema, OverlaySchema, OverlayType, SkillTableSchema } from "@/schema/SchemaTypes";
 import { defineStore } from "pinia";
 
 export const useStore = defineStore("base", {
@@ -68,6 +68,15 @@ export const useStore = defineStore("base", {
             } as OverlaySchema
         }
     }},
+
+    getters: {
+        // Returns the function to calculate the amount of category points of a given table
+        skills_get_category_points(){
+            return (tbl: keyof SkillTableCollectionSchema)=>(
+                Math.round(this.skills.tables[tbl].items.map(row=>row.points).reduce((a,b)=>a+b, 0) / 10)
+            )
+        }
+    },
 
     actions: {
         // Adds a new item to the given skill table
