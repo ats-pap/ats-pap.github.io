@@ -34,6 +34,10 @@ export default {
         flex-direction: column;
         align-items: center;
 
+        :deep(input){
+            width: 8rem;
+        }
+
         span{
             font-size: 1rem;
         }
