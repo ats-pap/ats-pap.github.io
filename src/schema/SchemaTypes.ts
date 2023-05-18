@@ -50,7 +50,8 @@ export enum EffectType {
     PROPERTY = "property",
     MUTATION = "mutation",
     ILLNESS = "illness",
-    PHY_ILLNESS = "psy_illness"
+    PHY_ILLNESS = "psy_illness",
+    MAGIC = "magic"
 }
 
 export type EffectSchema = {

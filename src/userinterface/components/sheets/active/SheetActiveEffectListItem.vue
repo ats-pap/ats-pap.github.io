@@ -19,6 +19,7 @@ const EFFECT_ICON : {[x in EffectType]: string} = {
     [EffectType.MUTATION]: "mutation",
     [EffectType.ILLNESS]: "illness",
     [EffectType.PHY_ILLNESS]: "psy-illness",
+    [EffectType.MAGIC]: "magic"
 }
 
 // Mappings from effect-types to names
@@ -28,7 +29,8 @@ const EFFECT_NAMES: {[x in EffectType]: string} = {
     [EffectType.PROPERTY]: "Eigenschaft",
     [EffectType.MUTATION]: "Mutation",
     [EffectType.ILLNESS]: "Krankheit",
-    [EffectType.PHY_ILLNESS]: "Psy. Krankheit"
+    [EffectType.PHY_ILLNESS]: "Psy. Krankheit",
+    [EffectType.MAGIC]: "Magie"
 }
 
 export default {
@@ -194,6 +196,9 @@ export default {
 
     &[data-type="psy-illness"] span{
         color: #9b64df;
+    }
+    &[data-type="magic"] span{
+        color: #a711c5;
     }
 }
 

@@ -49,4 +49,5 @@ export default {
 .ic-arrow-down{ background: url("@/assets/icons/ArrowUp.png"); }
 .ic-illness{ background: url("@/assets/icons/Illness.png"); }
 .ic-psy-illness{ background: url("@/assets/icons/PsyIllness.png"); }
+.ic-magic{ background: url("@/assets/icons/Magic.png"); }
 </style>
