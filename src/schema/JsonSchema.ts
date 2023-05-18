@@ -7,7 +7,8 @@ export const CHANGE_DEFAULTS = {
     "inventory.weapons.weight": Defaults.Arrays.inventory.weapons.weight,
     "inventory.allowedWeight": Defaults.Sheet.inventory.allowedWeight,
     "inventory.weightMalus": Defaults.Sheet.inventory.weightMalus,
-    "active.maluslist.type": EffectType.MALUS
+    "active.maluslist.type": EffectType.MALUS,
+    "skills.tables.magic": Defaults.Sheet.skills.tables.magic
 }
 
 // Schema for a skill-table

@@ -84,6 +84,10 @@ export const Defaults = {
                 social: {
                     mindflashes: 0,
                     items: [] as any
+                },
+                magic: {
+                    mindflashes: 0,
+                    items: [] as any
                 }
             }
         } as SkillsSchema,

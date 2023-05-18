@@ -28,7 +28,7 @@ export default {
     padding: 1rem;
     border-radius: .3rem;
     margin-bottom: 4rem;
-    min-width: 50rem;
+    min-width: 85rem;
 
     &:last-child{
         margin-bottom: 0;

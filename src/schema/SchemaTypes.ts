@@ -21,7 +21,8 @@ export type CharacterSchema = {
 export type SkillTableCollectionSchema = {
     act: SkillTableSchema,
     science: SkillTableSchema,
-    social: SkillTableSchema
+    social: SkillTableSchema,
+    magic: SkillTableSchema
 }
 
 export type SkillsSchema = {
@@ -125,5 +126,5 @@ export enum OverlayType {
 }
 
 export type OverlaySchema = {
-    current: OverlayType|undefined
+    current: OverlayType | undefined
 }

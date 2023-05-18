@@ -23,6 +23,9 @@ export default {
             <th>
                 <TableHead title="Soziales" keyName="social" />
             </th>
+            <th>
+                <TableHead title="Magie" keyName="magic" />
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +38,9 @@ export default {
             </td>
             <td>
                 <TableBody defaultPlaceholder="Uffeln" tableName="social"/>
+            </td>
+            <td>
+                <TableBody defaultPlaceholder="Meteoriten werfen" tableName="magic"/>
             </td>
         </tr>
     </tbody>
