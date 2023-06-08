@@ -22,8 +22,9 @@ const ACT_TABLE_SCHEMA = {
 
     properties: {
         mindflashes: {
-            type: "integer",
-            minimum: 0
+            // Legacy: Deprecated, will only be used here until all files have been converted
+            type: ["integer", "string"],
+            minimum: 0,
         },
         items: {
             type: "array",

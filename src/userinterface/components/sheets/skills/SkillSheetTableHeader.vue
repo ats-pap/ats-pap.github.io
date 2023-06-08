@@ -70,7 +70,7 @@ export default {
             <ValidatedInput
                 placeholder="0"
                 :value="store.skills.tables[keyName].mindflashes"
-                @input="store.skills.tables[keyName].mindflashes = $event"
+                @input="store.skills.tables[keyName].mindflashes = parseInt($event)"
                 type="number"
                 min="0" :max="getAllMindflashes"
                 />
