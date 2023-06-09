@@ -3,6 +3,7 @@ import { useStore } from '@/userinterface/Store';
 import TheOverlayLicenses from './overlays/TheOverlayLicenses.vue';
 import { OverlayType } from "@/schema/SchemaTypes";
 import Icon from '../utils/Icon.vue';
+import TheOverlayScaleSheet from './overlays/TheOverlayScaleSheet.vue';
 
 const store = useStore();
 
@@ -11,21 +12,24 @@ const store = useStore();
 <script lang="ts">
 
 export default {
-    components: { TheOverlayLicenses, Icon }
+    components: { TheOverlayLicenses, Icon, TheOverlayScaleSheet },
+    methods: {
+        onBackgroundClicked(evt: any){
+            // Ensures the overlay is only closed if click outside a window
+            if(!evt.target.classList.contains("overlay-base"))
+                return;
+            // Closes the overlay
+            useStore().overlay_close()
+        }
+    }
 }
 
 </script>
 
 <template>  
-<div v-if="store.app.overlay.current !== undefined" class="overlay-base">
-    <div class="overlay">
-        <div class="header">
-            <Icon @click="store.overlay_close()" name="delete" />
-        </div>
-
-        <TheOverlayLicenses v-if="store.app.overlay.current === OverlayType.LICENSES" />
-        
-    </div>
+<div v-if="store.app.overlay.current !== undefined" @click="onBackgroundClicked" class="overlay-base">
+    <TheOverlayLicenses v-if="store.app.overlay.current === OverlayType.LICENSES" />
+    <TheOverlayScaleSheet v-if="store.app.overlay.current === OverlayType.SHEET_SCALE" />
 </div>
 </template>
 
@@ -33,6 +37,7 @@ export default {
 
 .overlay-base{
     position: fixed;
+    cursor: pointer;
     top: 0;
     bottom: 0;
     right: 0;
@@ -41,49 +46,6 @@ export default {
     z-index: 999;
     justify-content: center;
     align-items: center;
-    display: flex;
-
-    .overlay{
-        padding: 1rem;
-        position: relative;
-        border-radius: 5px;
-        border: .16rem solid black;
-        background: #d4d4d4;
-        max-height: 90%;
-        overflow: auto;
-
-        :deep(h2){
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-
-        :deep(p){
-            display: flex;
-            font-size: 1.8rem;
-            margin: 0 1rem;
-            margin-top: .5rem;
-            &>*{
-                margin: 0 5px;
-            }
-        }
-
-        :deep(i){
-            width: 2rem;
-            height: 2rem;
-        }
-
-        .header{
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 3rem;
-            height: 3rem;
-            cursor: pointer;
-            i{
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
+    display: flex;    
 }
 </style>

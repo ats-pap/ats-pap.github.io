@@ -122,7 +122,8 @@ export type Schema = {
 }
 
 export enum OverlayType {
-    LICENSES
+    LICENSES,
+    SHEET_SCALE
 }
 
 export type OverlaySchema = {

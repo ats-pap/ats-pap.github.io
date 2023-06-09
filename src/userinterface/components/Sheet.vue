@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useStore } from '../Store';
 
+const store = useStore();
 </script>
 
 <script lang="ts">
@@ -9,8 +11,8 @@ export default {
 
 </script>
 
-<template>  
-<div class="sheet">
+<template>
+<div class="sheet" :style="`width: ${store.app.width}rem`">
     <slot />
 </div>
 </template>
@@ -18,12 +20,9 @@ export default {
 <style lang="scss">
 @import "../../assets/styles/Settings.scss";
 
-
-
 .sheet {
 
     background: white;
-    width: 70rem;
     margin: auto;
     padding: 1rem;
     border-radius: .3rem;

@@ -50,4 +50,5 @@ export default {
 .ic-illness{ background: url("@/assets/icons/Illness.png"); }
 .ic-psy-illness{ background: url("@/assets/icons/PsyIllness.png"); }
 .ic-magic{ background: url("@/assets/icons/Magic.png"); }
+.ic-scale{ background: url("@/assets/icons/Scale.png"); }
 </style>

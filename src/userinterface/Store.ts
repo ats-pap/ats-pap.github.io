@@ -11,7 +11,9 @@ export const useStore = defineStore("base", {
         app: {
             overlay: {
                 current: undefined
-            } as OverlaySchema
+            } as OverlaySchema,
+
+            width: 70 /*rem*/
         }
     }},
 

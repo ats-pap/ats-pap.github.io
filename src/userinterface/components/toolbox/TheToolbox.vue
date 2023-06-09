@@ -101,6 +101,10 @@ export default {
         <Icon name="license" />
         <span>Lizenzen</span>
     </div>
+    <div class="sources" @click="store.overlay_open(OverlayType.SHEET_SCALE)">
+        <Icon name="scale" />
+        <span>Sheet-Scale</span>
+    </div>
     <a href="https://artandtech.space/" target="_blank" class="ats">
         <Icon name="ats" />
         <span>Über uns</span>
@@ -151,7 +155,7 @@ export default {
     span{
         font-size: 1.3rem;
     }
-    a{
+    *:last-child{
         margin-bottom: 0;
     }
 
