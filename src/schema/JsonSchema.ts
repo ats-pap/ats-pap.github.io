@@ -37,8 +37,8 @@ const ACT_TABLE_SCHEMA = {
                 ],
                 properties: {
                     name: { type: "string" },
-                    points: { type: "integer", minimum: 0, maximum: 999 },
-                    bonusPoints: { type: "integer", minimum: -999, maximum: 999 }
+                    points: { type: "integer" },
+                    bonusPoints: { type: "integer" }
                 }
             }
         }
@@ -110,16 +110,14 @@ export const SCHEMA = {
                     }
                 },
                 ammunition: {
-                    type: "integer",
-                    minimum: 0,
-                    maximum: 99999
+                    type: "integer"
                 },
                 health: {
                     type: "object",
                     properties: {
-                        base: { type: "integer", minimum: 0, maximum: 999 },
-                        damage: { type: "integer", minimum: 0, maximum: 999 },
-                        armor: { type: "integer", minimum: 0, maximum: 999 },
+                        base: { type: "integer"},
+                        damage: { type: "integer" },
+                        armor: { type: "integer" },
                     }
                 },
                 item: { type: "string" },
@@ -137,9 +135,7 @@ export const SCHEMA = {
 
             properties: {
                 allowedPoints: {
-                    type: "integer",
-                    minimum: 0,
-                    maximum: 999
+                    type: "integer"
                 },
                 tables: {
                     type: "object",
@@ -166,8 +162,8 @@ export const SCHEMA = {
             ],
 
             properties: {
-                allowedWeight: { type: "integer", minimum: 0, maximum: 99999 },
-                weightMalus: { type: "integer", minimum: -9999, maximum: 9999 },
+                allowedWeight: { type: "integer" },
+                weightMalus: { type: "integer" },
                 items: {
                     type: "array",
 
@@ -182,9 +178,9 @@ export const SCHEMA = {
 
                         properties: {
                             name: { type: "string" },
-                            amount: { type: "integer", minimum: 1, maximum: 99999 },
+                            amount: { type: "integer" },
                             locked: { type: "boolean" },
-                            weight: { type: "integer", minimum: 0, maximum: 99999 }
+                            weight: { type: "integer" }
                         }
                     }
                 },
@@ -208,7 +204,7 @@ export const SCHEMA = {
                             damage: { type: "string" },
                             category: { type: "string" },
                             locked: { type: "boolean" },
-                            weight: { type: "integer", minimum: 0, maximum: 99999 }
+                            weight: { type: "integer" }
                         }
                     }
                 },

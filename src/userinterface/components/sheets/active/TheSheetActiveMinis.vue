@@ -5,143 +5,127 @@ import Icon from '../../utils/Icon.vue';
 import Seperator from "../../utils/OnefieldSeperator.vue"
 import HealthIcon from './SheetActiveHealthIcon.vue';
 import { useStore } from '@/userinterface/Store';
-import { mapStores } from 'pinia';
+import { computed } from 'vue';
 
 const store = useStore();
 
-</script>
+const healthLeft = computed(() => {
+    var { armor, base, damage } = store.active.health;
 
-<script lang="ts">
+    return base + armor - damage;
+})
 
-export default {
-    components: { Onefield, GrowInput, Icon, Seperator, HealthIcon },
+// Event: When the delete held item is clicked
+function onDeleteHeldClicked(){
+    // Unselects the item
+    store.active.item = "";
+}
 
-    computed: {
-        ...mapStores(useStore),
-        getHealthLeft(){
-            var { armor, base, damage } = this.baseStore.active.health;
+// Event: When the shoot icon is clicked
+function onShootClicked(){
+    // Gets the current value
+    var value = store.active.ammunition;
 
-            return base+armor-damage;
-        }
-    },
-
-    methods: {
-
-        // Event: When the delete held item is clicked
-        onDeleteHeldClicked(){
-            // Unselects the item
-            this.baseStore.active.item = "";
-        },
-
-        // Event: When the shoot icon is clicked
-        onShootClicked(){
-            // Gets the current value
-            var value = this.baseStore.active.ammunition;
-
-            // Checks if enought ammunition is given
-            if(value <= 0){
-                alert("Du hast keine Munition mehr.");
-                return;
-            }
-
-            // Decreases the ammunition
-            this.baseStore.active.ammunition = value-1;
-        }
-
+    // Checks if enought ammunition is given
+    if (value <= 0) {
+        alert("Du hast keine Munition mehr.");
+        return;
     }
+
+    // Decreases the ammunition
+    store.active.ammunition = value - 1;
 }
 
 </script>
 
 <template>
-<div class="minis">
+    <div class="minis">
 
-    <div class="selected-item">
-        <p>Ausgewähltes Item</p>
-        <Onefield>
-            <GrowInput placeholder="Leer" v-model="store.active.item" id="act-selected-item" type="text"></GrowInput>
-            <Seperator/>
-            <!--id="act-del-selected-item"-->
-            <Icon name="delete" @click="onDeleteHeldClicked"/>
-        </Onefield>
+        <div class="selected-item">
+            <p>Ausgewähltes Item</p>
+            <Onefield>
+                <GrowInput placeholder="Leer" v-model="store.active.item" id="act-selected-item" type="text"></GrowInput>
+                <Seperator />
+                <!--id="act-del-selected-item"-->
+                <Icon name="delete" @click="onDeleteHeldClicked" />
+            </Onefield>
+        </div>
+
+        <div class="ammunition">
+            <p>Munition</p>
+            <Onefield>
+                <GrowInput placeholder="0" v-model.number="store.active.ammunition" min="0" max="99999" id="act-ammunition"
+                    type="number"></GrowInput>
+                <span>Schuss</span>
+                <Seperator />
+                <!--id="act-shoot"-->
+                <Icon name="shoot" @click="onShootClicked" />
+            </Onefield>
+        </div>
+
+        <div class="skills">
+            <HealthIcon keyName="base" icon="heart" name="Basis" default="100" />
+
+            <span class="char">+</span>
+
+            <HealthIcon keyName="armor" min="0" icon="armor" name="Rüstung" />
+
+            <span class="char">-</span>
+
+            <HealthIcon keyName="damage" min="0" icon="blood" name="Schaden" />
+
+            <span class="char">=</span>
+        </div>
+
+        <p :class="'health-left ' + (healthLeft <= 0 ? 'negative' : '')"><span>{{ healthLeft }}</span>Hp</p>
+
+        <h3 class="effect-title">Effekteliste</h3>
     </div>
-    
-    <div class="ammunition">
-        <p>Munition</p>
-        <Onefield>
-            <GrowInput placeholder="0" v-model.number="store.active.ammunition" min="0" max="99999" id="act-ammunition" type="number"></GrowInput>
-            <span>Schuss</span>
-            <Seperator/>
-            <!--id="act-shoot"-->
-            <Icon name="shoot" @click="onShootClicked"/>
-        </Onefield>
-    </div>
-    
-    <div class="skills">
-        <HealthIcon keyName="base" icon="heart" name="Basis" default="100" />
-
-        <span class="char">+</span>
-
-        <HealthIcon keyName="armor" min="0" icon="armor" name="Rüstung" />
-
-        <span class="char">-</span>
-
-        <HealthIcon keyName="damage" min="0" icon="blood" name="Schaden" />
-
-        <span class="char">=</span>
-    </div>
-    
-    <p :class="'health-left '+(getHealthLeft <= 0 ? 'negative' : '' )"><span>{{ getHealthLeft }}</span>Hp</p>
-    
-    <h3 class="effect-title">Effekteliste</h3>
-</div>
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 
 <style scoped lang="scss">
-
 @import "@/assets/styles/Settings.scss";
 
-.minis{
+.minis {
     min-width: 55%;
     margin-right: 1rem;
     margin-top: 1rem;
-    
-    .effect-title{
+
+    .effect-title {
         margin-bottom: 0;
     }
 
-    .selected-item :deep(.seperator){
+    .selected-item :deep(.seperator) {
         margin-left: .4rem;
     }
 
-    .selected-item, .ammunition{
+    .selected-item,
+    .ammunition {
         display: flex;
         align-items: center;
 
-        :deep(.grow-input){
+        :deep(.grow-input) {
             max-width: 23rem;
             min-width: 3rem;
 
-            *{
+            * {
                 font-size: 1.2rem;
             }
-            
-            span{
+
+            span {
                 padding: .2rem .4rem;
             }
         }
 
-        p{
+        p {
             font-size: 1.4rem;
             display: inline-block;
             margin-right: .5rem;
         }
 
-        i{
+        i {
             width: 1.8rem;
             height: 1.8rem;
             margin-left: .2rem;
@@ -149,34 +133,35 @@ export default {
         }
     }
 
-    .ammunition{
+    .ammunition {
         margin-top: .5rem;
 
-        &>div>span{
+        &>div>span {
             font-size: 1.4rem;
             padding: 0 .4rem;
         }
     }
-    
-    .skills{
+
+    .skills {
         margin: 3rem 2rem 2rem 2rem;
         display: flex;
         justify-content: space-between;
 
-        .char{
+        .char {
             font-size: 3.5rem;
             font-family: "NewTelegraph";
             margin: 0 1rem;
         }
     }
 
-    .health-left{
+    .health-left {
 
         &.negative {
             color: $negativeColor;
         }
 
-        &,span{
+        &,
+        span {
             font-size: 3rem;
             font-family: "ChomskyRegular";
         }

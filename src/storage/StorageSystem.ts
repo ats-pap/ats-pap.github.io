@@ -10,7 +10,11 @@ const validateSchema = new Ajv().compile(SCHEMA);
 
 // Returns if the given element is a valid scham-object
 function isValidSaveObject(raw: any) : raw is Schema {
-    return validateSchema(raw) as boolean;
+    const isValid = validateSchema(raw) as boolean;
+
+    if(!isValid)
+        console.error(validateSchema.errors);
+    return isValid;
 }
 
 // Saves the current application state into a re-loadable json object

@@ -1,9 +1,9 @@
-import { createApp } from 'vue/dist/vue.esm-bundler';
 import App from '@/userinterface/App.vue'
 import { createPinia } from 'pinia';
 
 // Css imports
 import '@/assets/styles/main.scss'
+import { createApp } from 'vue';
 
 export async function start(){
     try{
